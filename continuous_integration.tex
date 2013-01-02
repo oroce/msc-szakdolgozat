@@ -1,17 +1,103 @@
-A Continuous Integration egy olyan gyakorlat, melynek során a fejlesztői workspacek mergelése
+%!TEX root = /Users/oroce/Documents/msc-szakdolgozat/dolgozat.tex
+\begin{quotation}
+A Continuous Integration – azaz a folyamatos integráció – egy szoftver fejlesztési módszer melyben a fejlesztőcsapat tagjai az általuk írt kódot legalább napi rendszerességgel integrálják a korábbi fejlesztések közé, ez napi többszöri integrálást jelent. Minden új kód integrálása során automatizált tesztek ellenőrzik, hogy a rendszerbe való illesztés során okozott-e valamilyen hibát az új kódrészlet és ennek eredményeként a lehető leghamarabb visszajelzést ad az integráció eredményéről. \cite{martin_fowler_cont_int}
+\end{quotation} 
 
-Build server
+A szoftverfejlesztés során egy átlagos projektben számos fejleszto dolgozik együtt a kódbázis különbözo részein. A fejlesztők a szoftver egy lokális másolatán dolgoznak a saját gépükön. Mikor elkészülnek az adott feladattal (például lefuttatják már a smoke teszteket is), felmásolják
+a megváltoztatott forrásokat a közös szerverre. Azonban ez elott szükségképpen frissíteni kell a saját lokális példányukat, amit integrációnak nevezünk. Szélsoséges esetben sajnos a lokális és a központi, up-to-date másolat közötti különbség olyan nagy lehet, hogy jelentosen módosítani kényszerülnek az újonnan fejlesztett funkciókat. majd ezután következhet az újabb frissítés, és esetleg az újabb kényszerű változtatás. Ezen ördögi kör elkerülésére alkalmazott szoftverfejlesztési gyakorlat a folytonos integráció (continuous integration), amelynek jelentése, hogy a fejlesztés során minden fejleszto adott rendszerességgel végrehajtja az integrációs lépést, elkerülve ezzel, hogy túl nagy különbség alakuljon ki az egyes lokális másolatok között. Ez a megközelítés egyértelműsége ellenére a 2000-es évek elején született meg, azóta terjed és örvend töretlen népszerűségnek. Bár a folytonos integrációt szinte mindig összekapcsolják az automatikus fordítással („build automation”), maga az alapötlet nem követeli ezt meg. Folytonos integrációs gyakorlatnak tekintheto például egy egyszerű céges előírás, hogy minden reggel a munka megkezdése előtt a fejlesztok kötelesek frissíteni a lokális másolatukat, kikényszerítve ezzel az rendszeres integrációt. Tehát a folytonos integrációs szigorúan véve csak egy verziókezelo rendszer használatát követeli meg. Egy nagyon jó összefoglalást a témáról a [3] weboldalon kaphatunk, érdemes elolvasni!
+Azonban az integrációnak nyilvánvalóan része egy fordítás végrehajtása, amelyet automatizálva nagyban megkönnyíthetjük a fejlesztok dolgát. Ez történhet például úgy, hogy egy commit művelet végrehajtása a közös tárolóba elindítja a fordítási folyamatot.
+Ezen felül érdemes ezt a folyamatot továbbgondolni, és egy meglévo tesztkészlettel ellenorizni azt, hogy az újonnan fejlesztett funkciók nem rontottak-e el egy már korábban is meglévő funkcionalitást. Tehát a fordítás végén automatikusan elindulhat egy regressziós tesztelési fázis is, amelynek végén egy riport generálódhat az egyes tesztek eredményeibol.
+A legtöbb folytonos integrációt megvalósító szerver támogatja egyedi szkriptek futtatását a
+fordítás elott illetve utána. Így lehetőség van például a telepítést automatizálni (ez az úgynevezett continuous deployment). Ennek segítségével a frissen fordított programverziót képesek vagyunk akár egy webszerverre is telepíteni, emberi beavatkozás nélkül.
+Látható, hogy a folytonos integrációt támogató szerverek segítségével lényegében egy munkafolyamatot tudunk összeállítani, amely a számunkra érdekes műveleteket végzi el teljesen autonóm módon. Egyes eszközök még akár bugtracking rendszerekkel is integrálhatóak (példál
+Bamboo és Jira). Mi a mérésen a Jenkins Java alapú szervert fogjuk használni automatikus fordításra és tesztfuttatásra.
 
-TDD
+\section{Jenkins}
+A Jenkins egy ingyenesen elérheto, nyílt forráskódú folytonos integráció támogató eszköz. Napjainkban az egyik legnépszerűbb ilyen szerver, ami támogatja a legtöbb verziókezelo rendszert (CVS, SVN, Git) és képes értelmezni Ant és Maven projekteket valamint tetszoleges shell scriptet illetve windows batch parancsfájlt. Tesztautomatizálást tekintve a Jenkins JUnit teszteket képes végrehajtani. Azonban a Jenkins architektúrája lehetové teszi a funkcionalitás kibővítését bővítmények segítségével, így integrálható számos egyéb tesztelő keretrendszerrel is. 
+Természetesen a bővítményeken keresztül a Jenkins összekötheto a népszerű bugtracking rendszerekkel is, de amennyiben valami saját megoldásra van szükségünk, nekünk is van lehetoségünk saját plugint fejleszteni. A mérés során mi ugyan nem fogunk saját Jenkins plugint fejleszteni, hanem csak egy munkafolyamat konfigurálását fogjuk elvégezni, de azért mérés elott érdemes megismerkedni a Jenkins weboldalával.
 
-QA
+\section{TDD\\\small{Test Driven Development}}
+ok esetben alapos szemléletváltozás szükséges ahhoz, hogy a tesztvezérelt fejlesztést előnyeit ki tudja használni a fejlesztő. Legalább annyi támogatója van, mint ellenzője. Sajnos feltételezésekbe kell bocsátkozzak, de szerintem az ellenzők egy jó része nem értette meg mire is való a TDD, és sokszor a lelkes kezdők is hasonló sorsra jutnak. A TDD kulcsszava a tervezés nem pedig a tesztelés. Járjuk körül egy kicsit, hogy miért is létezik ez az egész, hogy végül (reményeim szerint) használható alapot adjak azok kezébe, akik megpróbálkoznak a TDD-vel. Ez természetesen azzal jár, hogy néhány vitatott kérdésben elkötelezzem magam valamelyik oldal mellett.
 
-quality management
+Jól működő, könnyen bővíthető alkalmazás, szolgáltatás, stb. kell ahhoz, hogy a cég tulajdonosai élvezhessék a szoftverfejlesztés által megvalósuló ( jól megérdemelt ) hasznot. Ehhez biztosítani kell a létrehozott szoftver minőségét. Egyik ilyen módszer a tesztvezérlet fejlesztés. Minek és milyen minőségét fogja biztosítani az szerepeljen a következő sorokban, de előtte még oszlassunk el néhány tévhitet.
 
-unit tests
+Bizonyos szabályokat be kell vezetni ahhoz, hogy arra használjuk a TDD-t amire kell. A TDD egy fejlesztési módszer, nem pedig a szoftver tesztelésére használható eszköz. A módszer alkalmazásához teszteket is kell írnunk, azok pedig egység teszek (Unit test) lesznek. Mindenhol futtatható kell hogy legyen. Munkahelyi gépeden, otthoni gépeden, vonaton, Hősök terén. Bármilyen sorrendben lehessen futtatni a különböző teszteket. Külső függőségek nélkül, mint  például hálózat, vagy fájlrendszer. A teszteseteknek csak akkor kéne változniuk, ha a kódnak is változnia kell. Nem minden rendszer esetében használható ez a módszer.
 
-“A Continuous Integration – azaz a folyamatos integráció – egy szoftver fejlesztési módszer melyben a fejlesztőcsapat tagjai az általuk írt kódot legalább napi rendszerességgel integrálják a korábbi fejlesztések közé, ez napi többszöri integrálást jelent. Minden új kód integrálása során automatizált tesztek ellenőrzik, hogy a rendszerbe való illesztés során okozott-e valamilyen hibát az új kódrészlet és ennek eredményeként a lehető leghamarabb visszajelzést ad az integráció eredményéről” [1][2].
+A fejlesztési folyamat négy lépésre bontható:
 
-http://www.inf.mit.bme.hu/sites/default/files/materials/category/kateg%C3%B3ria/oktat%C3%A1s/msc-t%C3%A1rgyak/szolg%C3%A1ltat%C3%A1sbiztons%C3%A1gra-tervez%C3%A9s-laborat%C3%B3rium/11/07_tesztautomatizalas_meresi_segedlet.pdf
+Feladatok meghatározása:
+     Ebben a lépésben az ügyfél igényeknek megfelelő funkcionalitást kell feladat meghatározássá alakítani teszt esetek formájában. Meg kell határozni, hogy mit kellene tennie a rendszernek. Fontos, hogy nem azt kell itt kitalálni, hogy az adott fejlesztő hogyan valósítsa meg az adott feladatot, hanem hogy mit kell majd megvalósítani. A mit meghatározása által a fejlesztő is jobban megérti a feladatot, kisebb a félreértés lehetősége. A teszteset megírása után következik a megvalósítás.
 
-https://docs.google.com/viewer?a=v&q=cache:O4m0Cqx1xCIJ:www.inf.mit.bme.hu/sites/default/files/materials/category/kateg%25C3%25B3ria/oktat%25C3%25A1s/msc-t%25C3%25A1rgyak/szolg%25C3%25A1ltat%25C3%25A1sbiztons%25C3%25A1gra-tervez%25C3%25A9s-laborat%25C3%25B3rium/11/07_tesztautomatizalas_meresi_segedlet.pdf+&hl=hu&gl=hu&pid=bl&srcid=ADGEESikWw1iiMRvSQd9g3R6xUmTa5mMqznwpoWmxLZXxy8FQa1HhpwBSgBhLxvV6lDrk41WMoJwvwhWeMLTmyewJGvtTTA4g_hfn98BvkoSpMO0VLfzPY8ljCEyDpJWuAz-V9xbzij0&sig=AHIEtbTgfAo9T9Ti_kIhndMlokEW1PVDVQ
+Megvalósítás:
+     Ezután következik a hogyan valósítsuk meg az előre definiált feladatot. Azután meg is kell valósítani. A megvalósításnak kéne a legkönnyebb résznek lennie, ha mégsem könnyű akkor a következő problémák fordulhattak elő. Túl nagy feladatot határoztunk meg az előző lépésben, így az a feladat, hogy kisebb feladatokra bontsuk. Felmerül a kérdés, hogyan lehet könnyű a megvalósítás, ha előtte még egy libet is el kell előtte készíteni? Ilyenkor az adott lib feladatait kell meghatározni úgy, hogy a fejlesztők lesznek az ügyfelek és a ő igényeiket kell kielégíteni, és TDD alapján lefejleszteni.
+     Ha nem nagy lépésről van szó de mégis nehéz megvalósítani, akkor refaktorálni kell az adott részt. Ez lehet azért mert koszos a kód, vagy nincs jól megtervezve, stb. (A refaktorálás viszont egy külön történet, melyet meghagyunk egyelőre más blogoknak.)
+
+Ellenőrzés:
+     A megfelelő eszközzel le kell ellenőrizni, hogy sikeresek lettek-e a tesztek. Ennek gyorsnak és könnyűnek kell lennie. (A tesztek nem futhatnak néhány mp-nél lassabban, akkor már nagy a gond, ha több idő kell.) Ezáltal folyamatosan ellenőrzött, tervezett és fejlesztett lesz a kódunk.
+
+Tisztítás:
+     Ha elértük, hogy sikeresen lefussanak a tesztek, akkor jön a kód tisztítása. A működő kódot átnézzük, a duplikációkat eltüntetjük. Beszédesebb neveket választhatunk a változóinknak. Mivel az ügyfél számára fontos funkcionalitás már le van tesztelve, ezért bátran megtehetjük mindezt, ugyanis ha például elgépeljük valahol az új változónevet, akkor rögtön jelez a teszt, hogy hiba van. Esetleg túl nagy lett a függvény, akkor több kisebb függvényre szétbonthatjuk, stb. Ettől tisztább és karbantarthatóbb lesz a kód.
+
+Figyeljük meg, hogy az összes lépés megfeleltethető a tervezés egy-egy részének. A meghatározott feladatok automatizálásának köszönhetően lehetséges, hogy kis biztonságos lépésekben történjen a rendszer felépítése és tervezése. Segíti a feladat megértését, rákényszerít a könnyű megvalósíthatóságra a folyamatos tisztítás és újratervezés segítségével.
+
+
+TDD előnyei:
+- Refaktorálást segíti.
+     - Bátrabban módosítjuk az elkészült kódot.
+     - Könnyebb egy tesztelhető kódot refaktorálni ( a tervezés miatt ).
+- Megmutatja, hogy hol hasalt el a kód.
+- Az is segítség lehet, hogy hol nincs hiba.
+- Segít tesztelhetővé tenni az alkalmazást.
+- Rákényszerít, hogy egy függvény ne foglalkozzon sok mindennel.
+- Csak olyan kódot írsz, ami a teszthez kell.
+- Előre kell tervezni.
+- Elvileg jobban is lesz ettől megtervezve. :)
+- Gyors, folyamatos visszajezést kapsz a funkció állapotáról.
+- Az utolsó változtatásodnál ha érintett egy régebben megírt függvény, akkor azt pontosan jelzi.
+- Jobban ellenőrizhető a munka.
+     - Van, hogy egy funkciónak nincs látható eredménye egy hétig. Ezzel szemben a TDD-nél naponta meg tudod mondani, hogy mennyi sikeres tesztet tudtál írni.
+- Segít megérteni a feladatot a példákon keresztül.
+- Időcsökkentő tényező a hibajavításnál és a refaktorálásnál.
+- Hibajavításnál segíthet pontosabban megjelölni a hiba helyét.
+- Akár dokumentációként is szolgálhat a teszt. Példakódnak tekinthető. ( Python doctest erre az elképzelésre épül. )
+- Biztosítja, hogy az új kód nem érint más tesztelt egységet.
+- Vannak emberek akiknek ez lelkisegély.
+     - Örül, hogy de jó, sikeresen lefutott a teszt.
+     - Bizonytalanoknak mentsvár. :)
+     - Vannak akik ettől lesznek motiváltak és büszkék lesznek a munkájukra.
+- Vitatkoznak arról, hogy melyik a hatékonyabb módszer, a TDD vagy a kód felülvizsgálat.
+     - Szerintem a kettő együtt hatékony, egyik nem helyettesítheti a másikat.
+- Ha nincs TDD, akkor gyorsabban kész lesz, de nehezebben módosítható később.
+- A TDD tisztítás része pl. kódfelülvizsgálatnak is tekinthető.
+- Stabilitást elősegítheti.
+
+Hátrányok:
+- Nő a fejlesztési idő. (Refaktornál csökken.)
+     - Bevezetésekor drasztikusan.
+- Ha nem tiszta, hogy mit kell tenni az adott feladattal könnyen írhatunk rossz tesztet, amit át kell majd írni. (Újabb időnövelő tényező.)
+- Menet közben történt koncepcióváltásnál (létezik ilyen), könnyen kukába mehet az egész. (Újabb időnövelő tényező.)
+- Sokan azt hiszik ettől hibamentes lesz a program működése.
+- Nem csodafegyver. A rendszer tesztelésének (minőségbiztosításának) csak egy kis részét kéne, hogy képezze. (Accaptance test, integration test stb. mellett)
+- A unit test csak annyit jelent, hogy önálló kis részek jól működnek.
+- Csak tapasztalt fejlesztőkkel érdemes használni.
+- A tervezést nem mindig lehet úgy alakítani, hogy az megfeleljen a TDD-nek.
+     - Adatstruktúrák (közvetett módon) és \"black box algoritmusok\" tesztelésére jó.
+     - Hálózattal, fájlrendszerrel kapcsolatos dolgok kilőve.
+- Páros programozásban lenne érdemes használni.
+     - A tesztek írása unalmas lehet egyesek számára. Nagy fegyelemre lenne szükség.
+     - Nehéz belerázódni, ezért arra a következtetésre jutnak, hogy semmi értelme.
+     - Nehezebben történik meg, hogy egy feladat megoldásának hevében megírod az összes feladatot egy teszt segítségével. :)
+     - TDD-ben tapasztalt párral lenne a legideálisabb.
+     - A páros programozás előnyeit pedig még nehezebben lehet megértetni a managerekkel. :)
+- Nagy lelkesedés szükéséges az elején.
+     - Ha írsz hat tonnányi tesztet, amiről kiderül, hogy semmit nem ér akkor biztosan szükség lesz rá.
+- Nehéz megmagyarázni a managereknek, hogy az elején miért tart ennyi ideig a fejlesztés.
+
+\section{QA\\\small{(Software) Quality Assurance}}
+Software quality assurance (SQA) consists of a means of monitoring the software engineering processes and methods used to ensure quality.[citation needed] The methods by which this is accomplished are many and varied, and may include ensuring conformance to one or more standards, such as ISO 9000 or a model such as CMMI.
+SQA encompasses the entire software development process, which includes processes such as requirements definition, software design, coding, source code control, code reviews, change management, configuration management, testing, release management, and product integration. SQA is organized into goals, commitments, abilities, activities, measurements, and verifications.[1]
+The American Society for Quality offers a Certified Software Quality Engineer (CSQE) certification with exams held a minimum of twice a year.
+
+%http://www.inf.mit.bme.hu/sites/default/files/materials/category/kateg%C3%B3ria/oktat%C3%A1s/msc-t%C3%A1rgyak/szolg%C3%A1ltat%C3%A1sbiztons%C3%A1gra-tervez%C3%A9s-laborat%C3%B3rium/11/07_tesztautomatizalas_meresi_segedlet.pdf
+
+%https://docs.google.com/viewer?a=v&q=cache:O4m0Cqx1xCIJ:www.inf.mit.bme.hu/sites/default/files/materials/category/kateg%25C3%25B3ria/oktat%25C3%25A1s/msc-t%25C3%25A1rgyak/szolg%25C3%25A1ltat%25C3%25A1sbiztons%25C3%25A1gra-tervez%25C3%25A9s-laborat%25C3%25B3rium/11/07_tesztautomatizalas_meresi_segedlet.pdf+&hl=hu&gl=hu&pid=bl&srcid=ADGEESikWw1iiMRvSQd9g3R6xUmTa5mMqznwpoWmxLZXxy8FQa1HhpwBSgBhLxvV6lDrk41WMoJwvwhWeMLTmyewJGvtTTA4g_hfn98BvkoSpMO0VLfzPY8ljCEyDpJWuAz-V9xbzij0&sig=AHIEtbTgfAo9T9Ti_kIhndMlokEW1PVDVQ
