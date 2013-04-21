@@ -1,0 +1,186 @@
+#LyX file created by tex2lyx 2.0.5.1
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass report
+\use_default_options false
+\language magyar
+\language_package default
+\inputencoding utf8
+\fontencoding T1
+\font_roman lmodern
+\font_sans default
+\font_typewriter lmodern
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\paperfontsize 12
+\spacing single
+\use_hyperref 0
+\papersize a4paper
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 0
+\use_mathdots 0
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language polish
+\papercolumns 1
+\papersides 1
+\paperpagestyle fancy
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+%!TEX root = /Users/oroce/Documents/msc-szakdolgozat/dolgozat.tex
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+A webes alkalmazásoknál a folyamatos integráció több feladatot is ellát: 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+tesztek futtatása (unit, tdd, bdd, acceptance, integration) 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+a fő verzióba való olvasztás 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+adatbázis migrációs fájlok létrehozása 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+kliensoldali statikus tartalmak konkatenálása, minimalizálása 
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+A közösségi kódmegosztó github integrációs folyamata teljesen megfelel a felsorolásnak (
+\begin_inset CommandInset citation
+LatexCommand cite
+after ""
+key "github_deployment_web"
+
+\end_inset
+
+). A különbség mindössze annyi, hogy miután sikeresek a continuous integration lépései, egyből élesítésre kerülnek a szerverekre, azaz a fejlesztők a felelősek, ha valami hibát vétenek egy-egy funkció implementálásában. 
+\begin_inset space \hfill{}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ Viszont a Facebook a saját PHP-ban írt alkalmazásának performancia javításának céljából további feladatokat is végez a folyamatos integrálás során, ez pedig a buildelés, azaz a fordítás. A buildelés során a Facebook saját kódbázisát transzformálja, amelynek köszönhetően hatszoros gyorsulást sikerült elérniük (a PHP kódot optimalizált C kódra alakítják; az átalakítás során használt szoftver ingyenesen elérhető [
+\begin_inset Flex Flex:URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/facebook/hiphop-php
+\end_layout
+
+\end_inset
+
+]). 
+\begin_inset CommandInset citation
+LatexCommand cite
+after ""
+key "facebook_deployment"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+
+\lang magyar
+
+Tesztek futtatása
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+A tesztek futtatása a webes rendszerekben ugyanolyan fontos, mint bármelyik másik platformon. Viszont míg az asztali és mobil alkalmazásoknál, ismerhetőek a kliensek rendszer tulajdonságai (például ha egy alkalmazás csak Windows 7 operációs rendszeren működik, akkor ismerhetőek az azon elérhető futtathatósági lehetőségek, illetve fejlesztői eszköztárak), azonban a webes alkalmazásoknál nem csak különböző operációs rendszerekre kell optimalizálni, hanem az eltérő böngészőkre (melyek a lehető legkülönbözőbb módon implementálták az egyébként is laza HTML és ECMAScript szabványokat) és azok különböző verzióra. Ezeknek az okoknak köszönhetően a tesztelés, illetve a tesztautomatizálás rendkívül fontos a webes alkalmazásoknál (
+\begin_inset CommandInset citation
+LatexCommand cite
+after ""
+key "tddjs"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsubsection
+
+\lang magyar
+
+Kliensoldali tartalmak
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+A kliensoldali tartalmak konkatenálása és minimalizálás kiemelt fontosságú a webes alkalmazásoknál, ugyanis ezek a statikus tartalmak - a HTML mellett - az alkalmazás minden betöltésekor letöltésre kerülnek, ami pedig sok különálló fájl esetén a felhasználó élmény rovására mehet. 
+\end_layout
+
+\end_body
+\end_document

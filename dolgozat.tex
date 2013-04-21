@@ -1,13 +1,16 @@
 \documentclass[12pt,a4paper,english,magyar,oneside]{report}
 
 \usepackage{t1enc}
-
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} %szépek lesznek tőle a betűk a pdfben
+\usepackage{textcomp}
+\usepackage{pifont}
 \usepackage[utf8]{inputenc} % mert nem a középkorban vagyunk
 \usepackage[magyar]{babel}
 \def\magyarOptions{hyphenation=huhyphn}
 \usepackage[style=magyar,natbib=true,babel=other]{biblatex}
 \bibliography{bibliography}
-%\usepackage{csquotes}
+\usepackage{csquotes}
 \usepackage{listingsutf8}
 \usepackage{color}
 \definecolor{lightgray}{rgb}{.9,.9,.9}
@@ -48,10 +51,9 @@
 
 %%end of javascript listing%%
 
-\usepackage[T1]{fontenc}
 
 \usepackage{indentfirst} % fejezetek első bekezdését is húzzuk be
-\usepackage{lmodern} %szépek lesznek tőle a betűk a pdfben
+
 \usepackage{graphicx}
 
 
@@ -79,9 +81,9 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 
-%\usepackage{nomencl} %rovidites jegyzek
-%\renewcommand{\nomname}{Rövidítésjegyzék}
-%\makenomenclature % roviditesjegyzek
+\usepackage{nomencl} %rovidites jegyzek
+\renewcommand{\nomname}{Rövidítésjegyzék}
+\makenomenclature % roviditesjegyzek
 
 \begin{document}
 \selectlanguage{magyar}
@@ -91,13 +93,17 @@
 
 \setcounter{tocdepth}{2} % tartalomjegyzék mélysége
 \tableofcontents % tartalomjegyzéks
-%\printnomenclature[2.5cm]
+\printnomenclature[2.5cm]
+
 %\large{
 \chapter{Bevezetés}
 \include{introduction}
 
 \chapter{Continuous Integration}
 \include{continuous_integration}
+
+\chapter{Continuous Notification}
+\include{continuous_notification}
 
 \section{Webes alkalmazások}
 \include{web_deployment}

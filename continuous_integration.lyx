@@ -1,0 +1,903 @@
+#LyX file created by tex2lyx 2.0.5.1
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass report
+\use_default_options false
+\language magyar
+\language_package default
+\inputencoding utf8
+\fontencoding T1
+\font_roman lmodern
+\font_sans default
+\font_typewriter lmodern
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\paperfontsize 12
+\spacing single
+\use_hyperref 0
+\papersize a4paper
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 0
+\use_mathdots 0
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language polish
+\papercolumns 1
+\papersides 1
+\paperpagestyle fancy
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+%!TEX root = /Users/oroce/Documents/msc-szakdolgozat/dolgozat.tex
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+
+\lang magyar
+
+A Continuous Integration - azaz a folyamatos integráció - egy olyan szoftverfejlesztési módszertan, amelyben a fejlesztőcsapat tagjai által írt kód napi rendszerességgel kerül (vagy automatizálással minden funkció, javítás implementálása után) integrálásra a korábbi fejlesztések közé. Minden új kód integrálása során automatizált tesztek ellenőrzik, hogy a rendszerbe való illesztés során okozott-e valamilyen hibát az új kódrészlet, illetve megfelel-e az adott fejlesztőcsapat által meghatározott minőségi kritériumoknak és ennek eredményéről a lehető leghamarabb visszajelzést ad. 
+\begin_inset CommandInset citation
+LatexCommand cite
+after ""
+key "martin_fowler_cont_int"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+A szoftverfejlesztés során általában egy projekten több fejlesztő is dolgozik a kód különböző vagy akár egyazon részein is. A fejlesztők az alkalmazás másolatával dolgoznak a saját munkaállomásukon (nem pedig közvetlenül egy helyen). Ha egy feladat elkészül, akkor fel kell másolni a módosított fájlokat egy közös tárolóba/szerverre. Viszont a felmásolás előtt mindenképpen szükséges frissíteni a saját lokális példányukat, hogy elkerüljék a ütközéseket, illetve egymás munkájának felülírását, ezt a folyamatot nevezik integrációnak. Azonban előfordulhat, hogy a központi tároló és a saját lokális másolat között akkor különbség lehet, hogy nagy mértékben kénytelen a fejlesztő módosítani a saját fejlesztését, majd a javítás elvégzése után következhet ismét egy frissítés (integrálás), majd esetleg a megismételt javítás. Ez mint látható, egy ördögi kör. Ennek a megoldására jött létre a Continuous Integration, amelynek segítségével a fejlesztők adott időközönként megismétlik az integrációs lépést, hogy minél kevésbé térjen el a lokális verzió a központi tárolóban lévő verziótól. 
+\begin_inset space \hfill{}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ Hiába tűnik ez egy triviális és egyszerű megoldásnak, ez a megközelítés csak a 2000-es évek elején született meg, viszont azóta töretlen népszerűségnek örvend. Mára a folyamatos integráció összekapcsolódott az automatikus fordítással (build automation), azonban alapvetően nem szükséges része. Tehát például egy céges előírás, amely megköveteli, hogy a fejlesztők kötelesek minden reggel a lokális másolatuk frissítésére, is tulajdonképpen folyamatos integrációnak tekinthető, mert ezáltal megvalósítják a rendszeres integrációt. Ezek alapján kijelenthető, hogy a Continuous Integration valójában csak egy verziókezelő (pl.: git, Subversion, Mercurial) használatát követeli meg. 
+\begin_inset Newline newline
+\end_inset
+
+ Az automatizált fordítás habár nem alapvető része a folyamatos integrációnak mégis a fejlesztést és a fejlesztők munkáját nagyban megkönnyíti. Ez a művelet történhet bizonyos időközönként (munkaidő után éjszaka) vagy bizonyos eseményekre, mint például ha fejlesztők feltöltik a közös tárolóba a fájljaikat (commit). Az integrációs lépések és az automatikus fordítás közé érdemes lehet beépíteni a tesztelést, amely garantálja, hogy az új funkciók nem törik el a régi funkciókat. Továbbá érdemes az integrációról, a tesztelésről, és a fordításról riportokat generálni, melyekkel az eredmények - egy nem fejlesztő számára is - érthetőbb formába kerülnek. 
+\begin_inset Newline newline
+\end_inset
+
+ A folyamatos integrációra, tesztesetek futtatására, riportok értelmezésére már sok szoftver elérhető, többek között a Bamboo, amely a Jira és az Confluence mögött álló Atlassian terméke, vagy a Travic CI, amely ingyenes szolgáltatásként elérhető bármilyen nyílt forráskódú szoftver számára, illetve a mára de-facto rendszernek tekinthető Jenkins, amely a következő fejezetben kerül bemutatásra.
+\end_layout
+
+\begin_layout Section
+
+\lang magyar
+
+Jenkins
+\begin_inset Newline newline
+\end_inset
+
+
+\size small
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\end_inset
+
+https://jenkins-ci.org/
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+A Jenkins egy ingyenesen elérhető, nyílt forráskódú folytonos integráció támogató eszköz. A legtöbb verziókezelő rendszert támogatja és több mint 300 kiegészítő érhető el hozzá, melyek segítségével könnyedén testreszabható. Emellett támogatja az xUnit teszt keresztrenderek riportjait.
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+EZ KEVÉS!
+\end_layout
+
+\begin_layout Section
+
+\lang magyar
+
+TDD
+\begin_inset Newline newline
+\end_inset
+
+
+\size small
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\end_inset
+
+Test Driven Development
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+Manapság a folyamatos integráció és az automatikus fordítás egyik legfontosabb velejáró kulcsszava a TDD, azaz a teszt vezérelt fejlesztés. 
+\begin_inset Newline newline
+\end_inset
+
+ A TDD használatához egy elég erős szemléletváltásra van szükség, ezért legalább annyi ellenzője van, mint támogatója. A teszt vezérelt vagy teszt irányított fejlesztés a nevével ellentétben nem egy tesztelési megoldás, hanem sokkal inkább tervezés. 
+\begin_inset CommandInset citation
+LatexCommand cite
+after ""
+key "tddjs_definition"
+
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Egy alkalmazás jó és jól működéséhez könnyen bővíthetőnek kell lennie, hogy a termék, szolgáltatás meg tudjon újulni, a továbbfejlesztés zökkenőmentesen tudjon zajlani. De hogyan történik az új funkciók tervezése, beépíthetőségi megvalósításának tervezése? 
+\begin_inset Newline newline
+\end_inset
+
+ A TDD ezt próbálja elősegíteni azáltal, hogy a teszteseteket még a tervezés fázisában kell megírni, így a problémák a munka korai fázisában kiderülhetnek. A TDD teszt keretrendszerek általában könnyen olvashatóak még a fejlesztésben kevésbé járatos projekt résztvevők számára is, 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+aref
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\end_inset
+
+fig:mochashouldtddtest
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\end_inset
+
+ ábra ezt kívánja bemutatni. 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:mocha_should_tdd_test"
+
+\end_inset
+
+ 
+\begin_inset Float figure
+placement ht
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+lstinputlisting
+\end_layout
+
+\end_inset
+
+[language=Javascript]
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+{
+\end_layout
+
+\end_inset
+
+assets/mochatest.js
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Caption
+
+\begin_layout Standard
+
+\lang magyar
+
+Egy TDD teszt mocha és should keretrendszerekkel
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:mocha_should_tdd_test"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset Newline newline
+\end_inset
+
+ Mivel a TDD teszteseteket a fejlesztés alatt folyamatosan futtatják - ellenben az egységtesztekkel, melyek általában az integráció során futnak le -, ezért kimondottan gyorsnak, mindenhol, bármilyen sorrendben futtathatónak kell lenniük, mert egyébként a fejlesztők nem fogják felhasználni őket. Teszteseteknek csak abban az esetben kellene változniuk, ha a kód ezt megköveteli, illetve ha a specifikáció változik. 
+\begin_inset Newline newline
+\end_inset
+
+ A fejlesztési folyamat négy lépésre bontható: 
+\begin_inset space \hfill{}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Description
+
+\lang magyar
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+Feladatok meghatározása:
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset space \hfill{}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ Ebben a lépésben az ügyfél igényeknek megfelelő funkcionalitást kell feladat meghatározássá alakítani tesztesetek formájában. Meg kell határozni, hogy mit kellene tennie a rendszernek. Fontos, hogy nem azt kell itt kitalálni, hogy az adott fejlesztő hogyan valósítsa meg az adott feladatot, hanem hogy mit kell majd megvalósítani. A mit meghatározása által a fejlesztő is jobban megérti a feladatot, kisebb a félreértés lehetősége. A teszteset megírása után következik a megvalósítás. 
+\begin_inset space \hfill{}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Description
+
+\lang magyar
+
+Megvalósítás: 
+\begin_inset space \hfill{}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ Ezután következik a hogyan valósítsuk meg az előre definiált feladatot. Azután meg is kell valósítani. A megvalósításnak kellene a legkönnyebb résznek lennie, ha mégsem könnyű akkor a következő problémák fordulhattak elő. 
+\begin_inset Newline newline
+\end_inset
+
+ Túl nagy feladatot határoztunk meg az előző lépésben, így az a feladat, hogy kisebb feladatokra bontsuk. Felmerül a kérdés, hogyan lehet könnyű a megvalósítás, ha előtte még egy alkotóelemet is el kell előtte készíteni? Ilyenkor az adott alkotóelem feladatait kell meghatározni úgy, hogy a fejlesztők lesznek az ügyfelek és a ő igényeiket kell kielégíteni, és TDD alapján lefejleszteni.
+\begin_inset Newline newline
+\end_inset
+
+ Ha nem nagy lépésről van szó de mégis nehéz megvalósítani, akkor refaktorálni kell az adott részt. Ez lehet azért mert koszos a kód, vagy nincs jól megtervezve. 
+\begin_inset space \hfill{}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Description
+
+\lang magyar
+
+Ellenőrzés: 
+\begin_inset space \hfill{}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ A megfelelő eszközzel le kell ellenőrizni, hogy sikeresek lettek-e a tesztek. Ennek gyorsnak és könnyűnek kell lennie. (A tesztek nem futhatnak néhány másodpercnél lassabban.) Ezáltal folyamatosan ellenőrzött, tervezett és fejlesztett lesz a kód. 
+\begin_inset space \hfill{}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Description
+
+\lang magyar
+
+Tisztítás: 
+\begin_inset space \hfill{}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ Ha sikeresen le lehet futtatni a teszteket, akkor következik a kód tisztítása. A működő kódot át kell nézi, a duplikációkat eltüntetni.
+\begin_inset Newline newline
+\end_inset
+
+ Beszédesebb neveket választhatunk a változóinknak. Mivel az ügyfél számára fontos funkcionalitás már le van tesztelve, ezért ez a művelet már könnyedén elvégezhető, ugyanis ha például egy metódus neve elgépelésre kerül, akkor rögtön jelez a teszt, hogy hiba van. Ettől tisztább és karbantarthatóbb lesz a kód. 
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+Érdemes megfigyelni, hogy az összes lépés megfeleltethető a tervezés egy-egy részének. A meghatározott feladatok automatizálásának köszönhetően lehetséges, hogy kis biztonságos lépésekben történjen a rendszer felépítése és tervezése. Segíti a feladat megértését, rákényszerít a könnyű megvalósíthatóságra a folyamatos tisztítás és újratervezés segítségével.
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\series bold
+TDD előnyei:
+\series default
+ 
+\begin_inset space \hfill{}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Refaktorálást segíti. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+A kód módosítása könnyebb, hiszen hiba esetén a tesztek eltörnek, amely azonnali visszacsatolást a fejlesztő számára. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Könnyebb egy tesztelhető kódot refaktorálni (a tervezés miatt). 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Az is segítség lehet, hogy hol nincs hiba. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Segít tesztelhetővé tenni az alkalmazást. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Rákényszerít, hogy ne legyen az alkalmazásban spagetti kód. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Felesleges funkció nem kerül megvalósításra, csak az ami a teszthez szükséges. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Előre kell tervezni. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Gyors, folyamatos visszajelzés kapható a funkció állapotáról (nem csak az adott fejlesztőknek, de a csapat többi tagjának és a projektmenedzsernek is). 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Jobban ellenőrizhető a munka. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Van, hogy egy funkciónak nincs látható eredménye egy hétig. Ezzel szemben a TDD-nél naponta meg lehet mondani, hogy mennyi sikeres tesztet sikerült írni. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Segít megérteni a feladatot a példákon keresztül. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Időcsökkentő tényező a hibajavításnál és a refaktorálásnál. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Hibajavításnál segíthet pontosabban megjelölni a hiba helyét. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Akár dokumentációként is szolgálhat a teszt. Példakódnak tekinthető. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Biztosítja, hogy az új kód nem érint más tesztelt egységet. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Ha nincs TDD, akkor gyorsabban készül a szoftver, de nehezebben módosítható később. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+A TDD tisztítás része akár kódfelülvizsgálatnak is tekinthető. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Stabilitást elősegítheti. 
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\series bold
+TDD hátrányai:
+\series default
+ 
+\begin_inset space \hfill{}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Nő a fejlesztési idő (refaktorálásnál csökken). 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Ha nem tiszta, hogy mit kell tenni az adott feladattal könnyen előfordulhat, hogy rossz teszt kerül megírásra, amit át kell majd írni. (Újabb időnövelő tényező.) 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Menet közben történt koncepcióváltásnál ki kell dobni a teszteket. (Újabb időnövelő tényező.) 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+A program működése nem lesz hibamentes, ha tesztek sikeres lefutnak. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Nem csodafegyver. A rendszer tesztelésének (minőségbiztosításának) csak egy kis részét kéne, hogy képezze. (Acceptance tesztelés, integrációs tesztelés mellett) 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Csak tapasztalt fejlesztőkkel érdemes használni. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+A tervezést nem mindig lehet úgy alakítani, hogy az megfeleljen a TDD-nek. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Hálózattal, fájlrendszerrel kapcsolatos dolgokra nem használható. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Páros programozásban a legjobb használni. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+A tesztek írása unalmas lehet egyesek számára. Nagy fegyelemre van szükség. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Nehéz belerázódni, ezért arra a következtetésre lehet jutni, hogy semmi értelme. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+TDD-ben tapasztalt párral lenne a legideálisabb. 
+\end_layout
+
+\begin_layout Itemize
+
+\lang magyar
+
+Nehéz megmagyarázni a menedzsereknek/ügyfeleknek, hogy az elején miért tart ennyi ideig a fejlesztés. 
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+TODO: http://bitroar.posterous.com/when-tdd-fails
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+%
+\backslash
+section{QA
+\backslash
+
+\backslash
+
+\backslash
+small{(Software) Quality Assurance}}
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+%Software quality assurance (SQA) consists of a means of monitoring the software engineering processes and methods used to ensure quality.[citation needed] The methods by which this is accomplished are many and varied, and may include ensuring conformance to one or more standards, such as ISO 9000 or a model such as CMMI.
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+%SQA encompasses the entire software development process, which includes processes such as requirements definition, software design, coding, source code control, code reviews, change management, configuration management, testing, release management, and product integration. SQA is organized into goals, commitments, abilities, activities, measurements, and verifications.[1]
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+%The American Society for Quality offers a Certified Software Quality Engineer (CSQE) certification with exams held a minimum of twice a year.
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+%http://www.inf.mit.bme.hu/sites/default/files/materials/category/kateg%C3%B3ria/oktat%C3%A1s/msc-t%C3%A1rgyak/szolg%C3%A1ltat%C3%A1sbiztons%C3%A1gra-tervez%C3%A9s-laborat%C3%B3rium/11/07_tesztautomatizalas_meresi_segedlet.pdf
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+%https://docs.google.com/viewer?a=v&q=cache:O4m0Cqx1xCIJ:www.inf.mit.bme.hu/sites/default/files/materials/category/kateg%25C3%25B3ria/oktat%25C3%25A1s/msc-t%25C3%25A1rgyak/szolg%25C3%25A1ltat%25C3%25A1sbiztons%25C3%25A1gra-tervez%25C3%25A9s-laborat%25C3%25B3rium/11/07_tesztautomatizalas_meresi_segedlet.pdf+&hl=hu&gl=hu&pid=bl&srcid=ADGEESikWw1iiMRvSQd9g3R6xUmTa5mMqznwpoWmxLZXxy8FQa1HhpwBSgBhLxvV6lDrk41WMoJwvwhWeMLTmyewJGvtTTA4g_hfn98BvkoSpMO0VLfzPY8ljCEyDpJWuAz-V9xbzij0&sig=AHIEtbTgfAo9T9Ti_kIhndMlokEW1PVDVQ
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

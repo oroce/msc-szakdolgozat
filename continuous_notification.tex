@@ -1,0 +1,54 @@
+%!TEX root = /Users/oroce/Documents/msc-szakdolgozat/dolgozat.tex
+A folyamatos integrációnál mivel naponta több verzió is kikerülhet, sőt párhuzamosan akár több csapat vagy akár fejlesztő is élesíthet funkciókat, ezért nagyon fontos, hogy a rendszer folyamatosan tájékoztassa a csapatokat az élesített funkciók működéséről hibáiról illetve a többiek által fejlesztett funkciók állapotáról.
+
+\subsection{Chat rendszer}
+A fejlesztői csapatok illetve a csapattagok közti kommunikáció rendkívül fontos, mely persze történhet verbálisan, azonban ez megszakíthatja a munkát, illetve távoli munkavégzés esetén (főleg ha a résztvevők más országból végzik a munkát) akkor sokkal jobb megoldás egy chatrendszer bevezetése, ilyenek lehetnek például:
+\begin{itemize}
+	\item Jabber\nomenclature{Jabber}{TODO}
+	\item IRC\nomenclature{IRC}{IRC - Internet Relay Protocol}
+	\item HipChat
+	\item Campfire
+	\item Grove.io
+	\item FlowDock
+\end{itemize}
+
+\begin{table}
+	\caption{Chat rendszerek összehasonlítása}[h]
+	\begin{tabular}{ c | c | c | c | c | c | c }
+	- & Jabber & IRC & HipChat & Campfire & Grove.io & FlowDock \\
+	\hline
+			Saját szerver & \ding{51} & \ding{51} & \ding{55} & \ding{55} & \ding{55} & \ding{55} \\
+			Mobil alkalmazás & \ding{51} & \ding{51} & \ding{51} & \ding{55} & \ding{51} & \ding{55} \\
+			Asztali alkalmazás & \ding{51} & \ding{51} & \ding{51} & \ding{55} & \ding{55} & \ding{55} \\
+			Egy-az-egy beszélgetés & \ding{51} & \ding{51} & \ding{51} & \ding{55} & \ding{55} & \ding{55} \\
+			Csoportbeszélgetés & \ding{51} & \ding{51} & \ding{51} & \ding{55} & \ding{55} & \ding{55} \\
+			Audió, Videó & \ding{51} & \ding{51} & \ding{51} & \ding{55} & \ding{55} & \ding{55} \\
+			Email értesítés & \ding{51} & \ding{51} & \ding{51} & \ding{55} & \ding{55} & \ding{55} \\
+	\hline
+	\multicolumn{7}{l}{Forrás: \cite{chat_compare_hipchat}, \cite{chat_compare_campfire}, \cite{chat_compare_grove}, \cite{chat_compare_flowdock}}
+	\end{tabular}
+\end{table}
+
+\subsection{Log gyűjtés}
+GrayLog2
+
+Web log analysis software (also called a web log analyzer) is a kind of web analytics software that parses a server log file from a web server, and based on the values contained in the log file, derives indicators about when, how, and by whom a web server is visited. Usually reports are generated from the log files immediately, but the log files can alternatively be parsed to a database and reports generated on demand.
+Features supported by log analysis packages may include "hit filters", which use pattern matching to examine selected log data.
+
+\subsection{Alkalmazás hiba monitorozás}
+sentry, exceptional, bugsense, nagios
+
+
+\subsection{Szolgáltatások integrálása}
+git commit hook
+jenkins log
+deploy
+hibák
+graylog
+nagios
+sentry
+\subsubsection{Hubot}
+
+GitHub, Inc., wrote the first version of Hubot to automate our company chat room. Hubot knew how to deploy the site, automate a lot of tasks, and be a source of fun in the company. Eventually he grew to become a formidable force in GitHub. But he led a private, messy life. So we rewrote him.
+
+Today's version of Hubot is open source, written in CoffeeScript on Node.js, and easily deployed on platforms like Heroku. More importantly, Hubot is a standardized way to share scripts between everyone's robots.

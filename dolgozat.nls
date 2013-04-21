@@ -1,0 +1,9 @@
+\begin{thenomenclature} 
+
+ \nomgroup{A}
+
+  \item [{IRC}]\begingroup IRC - Internet Relay Protocol\nomeqref {3.0}
+		\nompageref{14}
+  \item [{Jabber}]\begingroup TODO\nomeqref {3.0}\nompageref{14}
+
+\end{thenomenclature}

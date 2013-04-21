@@ -1,0 +1,475 @@
+#LyX file created by tex2lyx 2.0.5.1
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+
+
+\usepackage{t1enc}
+
+% mert nem a középkorban vagyunk
+\usepackage[magyar]{babel}
+\def\magyarOptions{hyphenation=huhyphn}
+\usepackage[style=magyar,natbib=true,babel=other]{biblatex}\bibliography{bibliography}
+%\usepackage{csquotes}
+\usepackage{listingsutf8}\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+%%javascript listing%% 
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=,
+  sensitive=\true,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\ttfamily %,
+  %morestring=[b]',
+  %morestring=[b]"
+}
+\lstset{
+   language=JavaScript,
+   backgroundcolor=\color{lightgray},
+   extendedchars=false,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=5pt,
+   tabsize=2,
+   breaklines=\true,
+   showtabs=\true,
+   captionpos=b,
+   inputencoding=utf8,
+   escapeinside=||
+}
+
+%%end of javascript listing%%
+
+
+
+\usepackage{indentfirst}% fejezetek első bekezdését is húzzuk be
+%szépek lesznek tőle a betűk a pdfben
+
+
+
+\usepackage{url}%\usepackage{subfig}
+%\usepackage{times}
+% 2.5 centis margó mindenütt, bal oldalt +1 centi kötésnek
+\usepackage{anysize}\paperwidth=21cm \paperheight29.7cm
+\marginsize{3.5cm}{2.5cm}{2.5cm}{2.5cm} % {bal}{jobb}{felső}{alsó}
+\addtolength\topmargin{-\headheight} \addtolength\topmargin{-\headsep}
+\addtolength\textheight{\headheight} \addtolength\textheight{\headsep}
+\addtolength\textheight{\footskip}
+\footskip=15pt
+\ifx\pdfoutput\UnDefined \newcount\pdfoutput \fi
+\ifnum0<\pdfoutput
+  \pdfpagewidth\paperwidth \pdfpageheight\paperheight \pdfcompresslevel9
+\else \special{papersize=21cm,29.7cm} \fi
+
+\sloppy % inkább a térköz nőjön minthogy sorok lógjanak ki jobb szélen
+
+\linespread{1.4} % Másfeles sorköz
+\frenchspacing   %Szimpla térköz mondatok között
+
+\usepackage{fancyhdr}
+
+%rovidites jegyzek
+\renewcommand{\nomname}{Rövidítésjegyzék}
+\makenomenclature % roviditesjegyzek
+
+
+\end_preamble
+\use_default_options false
+\language magyar
+\language_package default
+\inputencoding utf8
+\fontencoding T1
+\font_roman lmodern
+\font_sans default
+\font_typewriter lmodern
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\paperfontsize 12
+\spacing single
+\use_hyperref 0
+\papersize a4paper
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 0
+\use_mathdots 0
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language polish
+\papercolumns 1
+\papersides 1
+\paperpagestyle fancy
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\lang magyar
+
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+% include most passzolva eleg lesz az a vegen is... 
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand include
+preview false
+filename "coverpage.lyx"
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+%fedlap
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+setcounter{tocdepth}{2}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+% tartalomjegyzék mélysége
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\begin_inset CommandInset nomencl_print
+LatexCommand printnomenclature
+set_width "custom"
+width "2.5cm"
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+%
+\backslash
+large{
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+
+\lang magyar
+
+Bevezetés
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset CommandInset include
+LatexCommand include
+preview false
+filename "introduction.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+
+\lang magyar
+
+Continuous Integration
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset CommandInset include
+LatexCommand include
+preview false
+filename "continuous_integration.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+
+\lang magyar
+
+Continuous Notification
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset CommandInset include
+LatexCommand include
+preview false
+filename "continuous_notification.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+
+\lang magyar
+
+Webes alkalmazások
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset CommandInset include
+LatexCommand include
+preview false
+filename "web_deployment.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+
+\lang magyar
+
+Asztali alkalmazások
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset CommandInset include
+LatexCommand include
+preview false
+filename "desktop_deployment.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+%
+\backslash
+section{Okostelefon alkalmazások}
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+%
+\backslash
+include{mobile_deployment}
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+printbibliography
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+%}
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

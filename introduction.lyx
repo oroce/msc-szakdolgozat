@@ -1,0 +1,91 @@
+#LyX file created by tex2lyx 2.0.5.1
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass report
+\use_default_options false
+\language magyar
+\language_package default
+\inputencoding utf8
+\fontencoding T1
+\font_roman lmodern
+\font_sans default
+\font_typewriter lmodern
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\paperfontsize 12
+\spacing single
+\use_hyperref 0
+\papersize a4paper
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 0
+\use_mathdots 0
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language polish
+\papercolumns 1
+\papersides 1
+\paperpagestyle fancy
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\lang magyar
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+%!TEX root = /Users/oroce/Documents/msc-szakdolgozat/dolgozat.tex
+\end_layout
+
+\begin_layout Standard
+
+
+\end_layout
+
+\end_inset
+
+Az interneten böngészve a felhasználó gyakran észre sem veszi, de egy weboldalon történő két kattintása között elképzelhető, hogy az adott rendszer kétszer is verziót váltott, azaz frissítette a rendszerét. De hogyan történik mindez? Hogyan lehetséges leállás nélkül naponta többször verziót váltani, akár földrajzilag elosztott rendszereket populálni? Ezekre a kérdésekre kíván a szakdolgozat válaszokat adni. 
+\begin_inset Newline newline
+\end_inset
+
+ Bemutatásra kerül a continuous integration folyamat, ezekhez használt rendszerek, eszközök. 
+\begin_inset Newline newline
+\end_inset
+
+ A dolgozat témája alapvetően a webes alkalmazásokat hivatott bemutatni, azonban kitér az asztali alkalmazásokra is. 
+\begin_inset Newline newline
+\end_inset
+
+ A verzióváltás téma azért rendkívül izgalmas, mert akkor működnek jól, ha a végfelhasználó nem veszi észre, azonban ezeknek a rendszerek megtervezése, kiépítése, működtetése néha komolyabb mérnöki probléma, mint azok az alkalmazások, amelyek számára készültek. 
+\end_layout
+
+\end_body
+\end_document
