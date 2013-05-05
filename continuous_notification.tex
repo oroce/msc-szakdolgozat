@@ -1,7 +1,7 @@
 %!TEX root = /Users/oroce/Documents/msc-szakdolgozat/dolgozat.tex
 A folyamatos integrációnál mivel naponta több verzió is kikerülhet, sőt párhuzamosan akár több csapat vagy akár fejlesztő is élesíthet funkciókat, ezért nagyon fontos, hogy a rendszer folyamatosan tájékoztassa a csapatokat az élesített funkciók működéséről hibáiról illetve a többiek által fejlesztett funkciók állapotáról.
 
-\subsection{Chat rendszer}
+\section{Chat rendszer}
 A fejlesztői csapatok illetve a csapattagok közti kommunikáció rendkívül fontos, mely persze történhet verbálisan, azonban ez megszakíthatja a munkát, illetve távoli munkavégzés esetén (főleg ha a résztvevők más országból végzik a munkát) akkor sokkal jobb megoldás egy chatrendszer bevezetése, ilyenek lehetnek például:
 \begin{itemize}
 	\item Jabber\nomenclature{Jabber}{TODO}
@@ -13,6 +13,7 @@ A fejlesztői csapatok illetve a csapattagok közti kommunikáció rendkívül f
 \end{itemize}
 
 \begin{table}
+!!!! NEM CSAK EMAIL
 	\caption{Chat rendszerek összehasonlítása}[h]
 	\begin{tabular}{ c | c | c | c | c | c | c }
 	- & Jabber & IRC & HipChat & Campfire & Grove.io & FlowDock \\
@@ -29,17 +30,24 @@ A fejlesztői csapatok illetve a csapattagok közti kommunikáció rendkívül f
 	\end{tabular}
 \end{table}
 
-\subsection{Log gyűjtés}
+\section{Naplózás, naplógyűjtés}
+
+Az alkalmazások viselkedésének monitorozása rendkívül fontos, ugyanis amint kikerülnek a belső homokozóból, akkor megváltozhatnak a reakcióik a felhasználók különbőző tevékenységeire, ezeknek a problémák a felderítése használják a naplózás és a naplógyűjtést. Érdemes kiemelni, hogy a fejlesztési (development), tesztelési (staging/user acceptence testing) illetve az előnézeti (preview) szerverek is mind valamilyen homokozónak számítanak, hiszen valós felhasználók nem használják, a felhasználók szimulálása - akár tesztelők, akár automatizált tesztek által - szinte sosem tökéletesek.
+\\
+A jól használt naplózással a hibák hamarabb kiszűrhetőek, a hibák forrása könnyebben kiszűrhető, azonban minden rendszer naplójainak egyidejű figyelése egyszerűen lehetetlen. Ezért használnak a legtöbb rendszerben központi naplózást és naplógyűjtést, amelynek segítségével a hibák felfedezése, forrásának felderítése és a megoldása is könnyebben megoldható. Miért lehetne a központi naplózással könnyebben megoldani egy problémát? Amennyiben az alkalmazás példánya tegyük fel lassan válaszol, miközben a többi példány hiba nélkül működik (ezt egy könnyű ellenőrizni, hiszen egymás mellé helyezhető az alkalmazás példányok naplója), akkor egyértelmű, hogy a hiba a példányt futtató eszközön van csak jelen - a legtöbb esetben - amely megkönnyíti a szakembereknek a hibajelenség elhárítását.
+\\
+Továbbá a központi naplózás könnyen implementálható a folyamatos értesítés munkafolyamataiba, amellyel egy-egy alkalmazás/termék felelős szakembere azonnal értesülhet a fenálló hibáról, a javítást azonnal elkezdheti.
+\\ 
 GrayLog2
 
 Web log analysis software (also called a web log analyzer) is a kind of web analytics software that parses a server log file from a web server, and based on the values contained in the log file, derives indicators about when, how, and by whom a web server is visited. Usually reports are generated from the log files immediately, but the log files can alternatively be parsed to a database and reports generated on demand.
 Features supported by log analysis packages may include "hit filters", which use pattern matching to examine selected log data.
 
-\subsection{Alkalmazás hiba monitorozás}
+\section{Alkalmazás hiba monitorozás}
 sentry, exceptional, bugsense, nagios
 
 
-\subsection{Szolgáltatások integrálása}
+\section{Szolgáltatások integrálása}
 git commit hook
 jenkins log
 deploy
@@ -47,7 +55,7 @@ hibák
 graylog
 nagios
 sentry
-\subsubsection{Hubot}
+\subsection{Hubot}
 
 GitHub, Inc., wrote the first version of Hubot to automate our company chat room. Hubot knew how to deploy the site, automate a lot of tasks, and be a source of fun in the company. Eventually he grew to become a formidable force in GitHub. But he led a private, messy life. So we rewrote him.
 
