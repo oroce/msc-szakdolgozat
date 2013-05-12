@@ -1,5 +1,5 @@
 %!TEX root = /Users/oroce/Documents/msc-szakdolgozat/dolgozat.tex
-A folyamatos integrációnál mivel naponta több verzió is kikerülhet, sőt párhuzamosan akár több csapat vagy akár fejlesztő is élesíthet funkciókat, ezért nagyon fontos, hogy a rendszer folyamatosan tájékoztassa a csapatokat az élesített funkciók működéséről hibáiról illetve a többiek által fejlesztett funkciók állapotáról.
+A folyamatos integrációnál mivel naponta több verzió is kikerülhet, sőt párhuzamosan akár több csapat vagy akár fejlesztő is élesíthet funkciókat, ezért nagyon fontos, hogy a rendszer folyamatosan tájékoztassa a csapatokat az élesített funkciók működéséről hibáiról illetve a többiek által fejlesztett funkciók állapotáról. Mindehhez két dologra van szükség, a kommunikáció és a rendszer minden apró részének monitorozására, mert ezáltal a hibák gyorsan kiszűrhetőek, a reakció idő csökkenthető és mindenki valós időben láthatja, hogy mi történik a rendszerben, azaz transzparens lesz, amelynek köszönhetően a szervezetnek könnyebb a részegységek megismerése, felelősségi köreik meghatározása, megismerése.
 
 \section{Chat rendszer}
 A fejlesztői csapatok illetve a csapattagok közti kommunikáció rendkívül fontos, mely persze történhet verbálisan, azonban ez megszakíthatja a munkát, illetve távoli munkavégzés esetén (főleg ha a résztvevők más országból végzik a munkát) akkor sokkal jobb megoldás egy chatrendszer bevezetése, ilyenek lehetnek például:
@@ -13,7 +13,6 @@ A fejlesztői csapatok illetve a csapattagok közti kommunikáció rendkívül f
 \end{itemize}
 
 \begin{table}
-!!!! NEM CSAK EMAIL
 	\caption{Chat rendszerek összehasonlítása}[h]
 	\begin{tabular}{ c | c | c | c | c | c | c }
 	- & Jabber & IRC & HipChat & Campfire & Grove.io & FlowDock \\
@@ -29,8 +28,12 @@ A fejlesztői csapatok illetve a csapattagok közti kommunikáció rendkívül f
 	\multicolumn{7}{l}{Forrás: \cite{chat_compare_hipchat}, \cite{chat_compare_campfire}, \cite{chat_compare_grove}, \cite{chat_compare_flowdock}}
 	\end{tabular}
 \end{table}
+De miért kell chat, miért nem elég az email alapú kommunikáció?\\
+\hfill\\
+A legtöbb szervezetben sajnos még mindig az email a legfontosabb kommunikációs eszköz, azonban az email lassú, nem alkalmas instant üzenetek küldésére, illetve gyakran kimaradnak a levelezésből megfelelő emberek, ezzel ellentétben viszont a cseten gyorsan lehet üzenetet váltani. Természetesen a csettel nem lehet kiváltani az emailt, a két eszközt kombinálva, egymást segítve lehet jól használni.
+Továbbá a cset mellett érvelve elmondható, hogy az emberek könnyebben elviselik a zajt csetet használva, mint az emailezésben.\textbf{}
 
-\section{Naplózás, naplógyűjtés}
+\section{Naplózás, naplógyűjtés\\}
 
 Az alkalmazások viselkedésének monitorozása rendkívül fontos, ugyanis amint kikerülnek a belső homokozóból, akkor megváltozhatnak a reakcióik a felhasználók különbőző tevékenységeire, ezeknek a problémák a felderítése használják a naplózás és a naplógyűjtést. Érdemes kiemelni, hogy a fejlesztési (development), tesztelési (staging/user acceptence testing) illetve az előnézeti (preview) szerverek is mind valamilyen homokozónak számítanak, hiszen valós felhasználók nem használják, a felhasználók szimulálása - akár tesztelők, akár automatizált tesztek által - szinte sosem tökéletesek.
 \\
@@ -38,16 +41,50 @@ A jól használt naplózással a hibák hamarabb kiszűrhetőek, a hibák forrá
 \\
 Továbbá a központi naplózás könnyen implementálható a folyamatos értesítés munkafolyamataiba, amellyel egy-egy alkalmazás/termék felelős szakembere azonnal értesülhet a fenálló hibáról, a javítást azonnal elkezdheti.
 \\ 
-GrayLog2
+A piacon több naplógyűjtő alkalmazás is elérhető mind telepíthető, mind \nomenclature{SaaS}{TODO} formában. A telepíthető és SaaS verzióban is elérhető többet a között a \emph{GrayLog2}.
+\\
+\subsection{GrayLog2}
+A GrayLog2 segítségével könnyen monitorozható az összes szoftveres hiba, legyen szó akár adatbázisról, az operációs rendszer hibáiról vagy alkalmazáshibáról. Emelett lehetőséget nyújt nem csak hibajellegű üzenetek tárolására, hanem a hibakereséshez szükséges üzenetek megjelenítésére is.
 
-Web log analysis software (also called a web log analyzer) is a kind of web analytics software that parses a server log file from a web server, and based on the values contained in the log file, derives indicators about when, how, and by whom a web server is visited. Usually reports are generated from the log files immediately, but the log files can alternatively be parsed to a database and reports generated on demand.
-Features supported by log analysis packages may include "hit filters", which use pattern matching to examine selected log data.
+\begin{figure}[ht]
+	\centering
+		\includegraphics[scale=0.5]{assets/graylog2.png}%
+		\caption[DUMMY]%
+		{A GrayLog2 interfésze}%
+		\label{fig:graylog2-webinterface}
+\end{figure}
 
-\section{Alkalmazás hiba monitorozás}
-sentry, exceptional, bugsense, nagios
+\Aref{graylog2-webinterface} ábrán látható a GrayLog2 webes interfésze, amelynek segítségével a szakemberek könnyen észlelhetik valós időben a fennálló vagy éppen bekövetkező hibákat, továbbá kereshetnek a korábban előforduló hibákban (erre a GrayLog2 az \nomenclature{ElasticSearch}{TODO} \nomenclature{full-text search engine}{TODO} szoftvert használja) illetve könnyen beállíthatnak értesítéseket, hogy akár az éjszaka felmerülő hibákról is értesülhessen a felelős.
 
+\section{Alkalmazás hiba monitorozás\\}
+A naplózással a hibák könnyen észrevehetővé és később visszakereshető válnak, azonban a következőkre nem nyújt megoldást:\\
+\begin{itemize}
+\item hibák rögzítése a jegykezelő (issue kezelő) rendszerben
+\item egy hiba csak egyszer kerüljön rögzítésre
+\item automatikus értesítés a hibáról
+\item a hibászázalék vizualizálása komponensenként
+\end{itemize}
 
-\section{Szolgáltatások integrálása}
+Természetesen alkalmazás hiba monitorozó rendszer nélkül is működhet rendszer jól, azonban előfordulhat, hogy nagy mennyiségű hibánál a naplógyűjtő rendszerben átsiklanak problémák felett vagy egyszerűen elfelejtésre kerülnek. A másik probléma lehet amikor a hibajelentést közvetlenül a jegykezelő rendszerbe kötik be. Ez miért lehet probléma? Egy nagy felhasználóbázissal rendelkező rendszernél, ha hiba csak a felhasználók néhány százalékánál fordul elő, akkor is szükségtelenül nagy mennyiségű jegy keletkezést fogja előidézni.\\
+
+Az alkalmazás hiba monitorozás leginkább a nem webes alkalmazásoknál (mobil és asztali) terjedt el az utóbbi időben, ugyanis ezeknél a rendszereknél a naplók nem, vagy csak nehezen gyűjthetők valós időben.\\
+
+Elérhető alkalmazások:
+\begin{itemize}
+\item Sentry - \url{http://getsentry.com}
+\item Exceptional - \url{http://www.exceptional.io/}
+\item Bugsense - \url{http://www.bugsense.com/}
+\end{itemize}
+
+\begin{figure}[ht]
+	\centering
+		\includegraphics[scale=1]{assets/sentry.png}%
+		\caption[DUMMY]%
+		{A Sentry interfésze}%
+		\label{fig:sentry}
+\end{figure}
+
+\section{Szolgáltatások integrálása\\}
 git commit hook
 jenkins log
 deploy
