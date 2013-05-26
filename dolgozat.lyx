@@ -1,4 +1,4 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
+#LyX file created by tex2lyx 2.0.5.1
 \lyxformat 413
 \begin_document
 \begin_header
@@ -6,14 +6,12 @@
 \begin_preamble
 
 
-\usepackage{t1enc}
-
-% mert nem a középkorban vagyunk
+\usepackage{t1enc}%szÃ©pek lesznek tÅle a betÅ±k a pdfben
+\usepackage{pifont}% mert nem a középkorban vagyunk
 \usepackage[magyar]{babel}
 \def\magyarOptions{hyphenation=huhyphn}
 \usepackage[style=magyar,natbib=true,babel=other]{biblatex}\bibliography{bibliography}
-%\usepackage{csquotes}
-\usepackage{listingsutf8}\definecolor{lightgray}{rgb}{.9,.9,.9}
+\usepackage{csquotes}\usepackage{listingsutf8}\definecolor{lightgray}{rgb}{.9,.9,.9}
 \definecolor{darkgray}{rgb}{.4,.4,.4}
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
 %%javascript listing%% 
@@ -52,9 +50,8 @@
 %%end of javascript listing%%
 
 
-
 \usepackage{indentfirst}% fejezetek első bekezdését is húzzuk be
-%szépek lesznek tőle a betűk a pdfben
+
 
 
 
@@ -82,9 +79,10 @@
 %rovidites jegyzek
 \renewcommand{\nomname}{Rövidítésjegyzék}
 \makenomenclature % roviditesjegyzek
+
+
 \end_preamble
 \use_default_options false
-\maintain_unincluded_children false
 \language magyar
 \language_package default
 \inputencoding utf8
@@ -98,15 +96,12 @@
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
-
 \graphics default
 \default_output_format default
 \output_sync 0
-\bibtex_command default
-\index_command default
 \paperfontsize 12
 \spacing single
-\use_hyperref false
+\use_hyperref 0
 \papersize a4paper
 \use_geometry false
 \use_amsmath 1
@@ -119,10 +114,6 @@
 \paperorientation portrait
 \suppress_date false
 \use_refstyle 0
-\index Tárgymutató
-\shortcut idx
-\color #008000
-\end_index
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -141,16 +132,29 @@
 \begin_body
 
 \begin_layout Standard
+
+\lang magyar
+
+
+\lang magyar
+
+\end_layout
+
+\begin_layout Standard
+
+\lang magyar
+
+
 \begin_inset ERT
 status collapsed
 
-\begin_layout Plain Layout
+\begin_layout Standard
 
-% include most passzolva eleg lesz az a vegen is...
- 
+% include most passzolva eleg lesz az a vegen is... 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+
 
 \end_layout
 
@@ -159,6 +163,7 @@ status collapsed
 
 \begin_inset CommandInset include
 LatexCommand include
+preview false
 filename "coverpage.lyx"
 
 \end_inset
@@ -167,12 +172,13 @@ filename "coverpage.lyx"
 \begin_inset ERT
 status collapsed
 
-\begin_layout Plain Layout
+\begin_layout Standard
 
 %fedlap
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+
 
 \end_layout
 
@@ -182,10 +188,14 @@ status collapsed
 \end_layout
 
 \begin_layout Standard
+
+\lang magyar
+
+
 \begin_inset ERT
 status collapsed
 
-\begin_layout Plain Layout
+\begin_layout Standard
 
 
 \backslash
@@ -198,12 +208,13 @@ setcounter{tocdepth}{2}
 \begin_inset ERT
 status collapsed
 
-\begin_layout Plain Layout
+\begin_layout Standard
 
 % tartalomjegyzék mélysége
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+
 
 \end_layout
 
@@ -220,24 +231,28 @@ LatexCommand tableofcontents
 LatexCommand printnomenclature
 set_width "custom"
 width "2.5cm"
-
 \end_inset
 
 
 \end_layout
 
-\begin_layout LyX-Code
+\begin_layout Standard
+
+\lang magyar
+
+
 \begin_inset ERT
 status collapsed
 
-\begin_layout Plain Layout
+\begin_layout Standard
 
 %
 \backslash
 large{
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+
 
 \end_layout
 
@@ -247,12 +262,20 @@ large{
 \end_layout
 
 \begin_layout Chapter
+
+\lang magyar
+
 Bevezetés
 \end_layout
 
 \begin_layout Standard
+
+\lang magyar
+
+
 \begin_inset CommandInset include
 LatexCommand include
+preview false
 filename "introduction.lyx"
 
 \end_inset
@@ -261,12 +284,20 @@ filename "introduction.lyx"
 \end_layout
 
 \begin_layout Chapter
+
+\lang magyar
+
 Continuous Integration
 \end_layout
 
 \begin_layout Standard
+
+\lang magyar
+
+
 \begin_inset CommandInset include
 LatexCommand include
+preview false
 filename "continuous_integration.lyx"
 
 \end_inset
@@ -275,12 +306,20 @@ filename "continuous_integration.lyx"
 \end_layout
 
 \begin_layout Chapter
+
+\lang magyar
+
 Continuous Notification
 \end_layout
 
 \begin_layout Standard
+
+\lang magyar
+
+
 \begin_inset CommandInset include
 LatexCommand include
+preview false
 filename "continuous_notification.lyx"
 
 \end_inset
@@ -289,12 +328,20 @@ filename "continuous_notification.lyx"
 \end_layout
 
 \begin_layout Section
+
+\lang magyar
+
 Webes alkalmazások
 \end_layout
 
 \begin_layout Standard
+
+\lang magyar
+
+
 \begin_inset CommandInset include
 LatexCommand include
+preview false
 filename "web_deployment.lyx"
 
 \end_inset
@@ -303,12 +350,20 @@ filename "web_deployment.lyx"
 \end_layout
 
 \begin_layout Section
+
+\lang magyar
+
 Asztali alkalmazások
 \end_layout
 
 \begin_layout Standard
+
+\lang magyar
+
+
 \begin_inset CommandInset include
 LatexCommand include
+preview false
 filename "desktop_deployment.lyx"
 
 \end_inset
@@ -317,17 +372,22 @@ filename "desktop_deployment.lyx"
 \end_layout
 
 \begin_layout Standard
+
+\lang magyar
+
+
 \begin_inset ERT
 status collapsed
 
-\begin_layout Plain Layout
+\begin_layout Standard
 
 %
 \backslash
 section{Okostelefon alkalmazások}
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+
 
 \end_layout
 
@@ -337,14 +397,15 @@ section{Okostelefon alkalmazások}
 \begin_inset ERT
 status collapsed
 
-\begin_layout Plain Layout
+\begin_layout Standard
 
 %
 \backslash
 include{mobile_deployment}
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+
 
 \end_layout
 
@@ -354,6 +415,10 @@ include{mobile_deployment}
 \end_layout
 
 \begin_layout Standard
+
+\lang magyar
+
+
 \begin_inset Newpage newpage
 \end_inset
 
@@ -361,10 +426,14 @@ include{mobile_deployment}
 \end_layout
 
 \begin_layout Standard
+
+\lang magyar
+
+
 \begin_inset ERT
 status collapsed
 
-\begin_layout Plain Layout
+\begin_layout Standard
 
 
 \backslash
@@ -377,15 +446,20 @@ printbibliography
 \end_layout
 
 \begin_layout Standard
+
+\lang magyar
+
+
 \begin_inset ERT
 status collapsed
 
-\begin_layout Plain Layout
+\begin_layout Standard
 
 %}
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+
 
 \end_layout
 

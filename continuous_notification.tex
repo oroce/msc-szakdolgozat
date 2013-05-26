@@ -54,7 +54,7 @@ A GrayLog2 segítségével könnyen monitorozható az összes szoftveres hiba, l
 		\label{fig:graylog2-webinterface}
 \end{figure}
 
-\Aref{graylog2-webinterface} ábrán látható a GrayLog2 webes interfésze, amelynek segítségével a szakemberek könnyen észlelhetik valós időben a fennálló vagy éppen bekövetkező hibákat, továbbá kereshetnek a korábban előforduló hibákban (erre a GrayLog2 az \nomenclature{ElasticSearch}{TODO} \nomenclature{full-text search engine}{TODO} szoftvert használja) illetve könnyen beállíthatnak értesítéseket, hogy akár az éjszaka felmerülő hibákról is értesülhessen a felelős.
+\Aref{fig:graylog2-webinterface} ábrán látható a GrayLog2 webes interfésze, amelynek segítségével a szakemberek könnyen észlelhetik valós időben a fennálló vagy éppen bekövetkező hibákat, továbbá kereshetnek a korábban előforduló hibákban (erre a GrayLog2 az \nomenclature{ElasticSearch}{TODO} \nomenclature{full-text search engine}{TODO} szoftvert használja) illetve könnyen beállíthatnak értesítéseket, hogy akár az éjszaka felmerülő hibákról is értesülhessen a felelős.
 
 \section{Alkalmazás hiba monitorozás\\}
 A naplózással a hibák könnyen észrevehetővé és később visszakereshető válnak, azonban a következőkre nem nyújt megoldást:\\
@@ -85,15 +85,35 @@ Elérhető alkalmazások:
 \end{figure}
 
 \section{Szolgáltatások integrálása\\}
-git commit hook
-jenkins log
-deploy
-hibák
-graylog
-nagios
-sentry
-\subsection{Hubot}
 
+A fejezetben említett említett szolgáltatás, szoftverek használatával a fejlesztők, adminisztrátorok már jobban megismerhetik saját alkalmazásikat, azonban ennyi felület, értesítés nyomon követése szinte már lehetetlen, ezért minden szervezet próbálja ezeket az eszközöket egymásba integrálni.
+\begin{figure}[ht]
+	\centering
+		\includegraphics[scale=1.0]{assets/integrated_services.png}%
+		\caption[DUMMY]%
+		{A szolgáltatások egy lehetséges integrálása}%
+		\label{fig:integrated-services}
+\end{figure}
+\Aref{fig:integrated-services} ábrán látható a szolgáltatások egy lehetséges integrációja. Első ránézésre az ábra bonyolultnak és összetettnek tűnhet, mert sok különböző egység integrációját igényli emellett a részegységeknek valós időben kell kommunikálniuk, tudniuk kell a sorrendet, és képeseknek kell lenniük egymás üzeneteinek megértésére.\\
+Ezeknek az igénynek a kielégítésére minden részegység tudja, hogy kit kell neki értesítenie; az értesítések pedig ún. \emph{webhook} (\cite{web_hook}) használatával történik, amely egy egyszerű HTTP kérés, ezáltal valós időben történhet meg az következő részegység notifikálása.\\
+Viszont hogyan képesek megérteni egymás üzeneteit a részegységek?\\
+Erre sajnos nincs sztenderd specifikáció, azonban szinte minden említett eszköz nyílt forrású és széles körben elterjedt, ezért egymás üzeneteinek feldolgozása, megértése már megoldott beépülők használatával.\\
+
+\Aref{fig:integrated-services} ábrán felrajzolt folyamatnak az első szintje az amikor a kód bekerül a verziókezelőbe, amely össze van kapcsolva a feladatkezelővel, ahol akár a kapcsoló jegy lezárásra is kerülhet a kód mellé csatolt üzenet szövege (\nomenclature{commit message}{TODO}) alapján, majd a chaten keresztül értesülhetnek a csapat tagjai, a projektmenedzser vagy az adott szervezeten belül bárki, aki érintett lehet az adott funkció, szolgáltatás fejlesztésében.\\
+A verziókezelő másik kapcsolata az integrációs eszközzel van, amely lefuttat különböző ellenőrző, tesztelési és riportálási feladatokat, amelyek garantálják, hogy az új kódsorok megfelelnek a céges előírásoknak, nem okoznak problémát az alkalmazás futtatásában, a folyamat végén értesítést küldhet a közös chatbe az integráció sikerességéről, hiba esetén értesítheti a megfelelő személyeket, ugyanis a hiba kijavításáig senki tud hibámentes kódot beküldeni az integrációs folyamatba, ezért ennek az értesíthet a legmagasabb prioritással kell történnie. Az integrációs folyamat kimenete lehetséges, hogy újabb integrációs folyamat bemenete lesz; ez olyankor fordulhat elő, amikor az alkalmazás egyik ága egy másik ágba kerül beolvasztásra. Ez történhet például a fejlesztői ág tesztelői ágba való automatikus vagy félautomatikus olvasztásakor, vagy a minőségbiztosítási csapat (\nomenclature{QA team}{TODO}) tesztelői ág jóváhagyásaként a produkciós ágba való olvasztáskor.\\
+\hfill\\
+\Aref{fig:integrated-services} ábrán továbbhaladva az integrációs eszköz után az alkalmazás felhasználói elfogadási szerver (user acceptance test server) vagy előnézeti (staging, preview) szerverre kerül, amely egy homokozószerű, zárt, a produkciós szerverrel megegyező architektúrájú környezetben nyújt lehetőséget az alkalmazás tesztelésére. Majd ezután kerülhet ki a produkciós szerverre. Mind a felhasználói elfogadási, az előnézeti és a produkciós szerverek hibáit már naplózni illetve az ezeken futó alkalmazásokét is; hiba esetén pedig értesíteni kell a chaten keresztül az hibát okozó komponens, vagy alkalmazás részért felelős személyt, csapatot. A felelősök a hibáról hibajegyet készíthetnek a feladatkezelőbe, majd a fejlesztőcsapatok javítva a hibát a kódot beküldik a verziókezelőbe és a folyamat újraindul.\\
+\hfill\\
+Fontos felhívni a figyelmet, hogy \aref{fig:integrated-services} ábrán rendkívül komoly hangsúlyt kapott a chat rendszer, természeten nem kötelező csetet használni, azonban a valós idejű értesítésekre illetve a reakcióidő csökkentése érdekében mindenképpen ajánlott. Továbbá az ábrán nem szerepel, de a cset alapú notifikálás mellett érdemes egy értesítése formákat is használni, mint például az email, vagy magas prioritású hibáknál (alkalmazásleállás) érdemes lehet megfontolni az sms, okostelefon valós idejű üzenet (\nomenclature{Push Notification}{TODO}), esetleg csipogó használatát.
+
+\subsection{Hubot}
+Ha egy szervezet úgy dönt, hogy csetet fog használni a rendszerek, alkalmazások valós idejű követésére, akkor találkozni fog a következő problémákkal:
+\begin{description}
+\item[Rendszerautomatizáció] hiába automatizált a folyamat, ha az egy-egy pontról történő elindítás nem lehetséges, bárhonnan, bármikor.\\
+Ilyen probléma lehet az integrációs rendszer elindítása a kód egy pillanatnyi állapotától kód beküldés nélkül.
+\item[Távoli irányítás] lehet, hogy egy asztali számítógépen könnyen elvégezhető a produkciós rendszeren egy verzióváltás, de miért ne lehetne ezt megtenni egy okostelefonról is?
+\item[Kommunikáció külső eszközök használatakor] ha egy üzenet érkezik (például alkalmazás újraindítás szükségességéről), akkor a csapat tagjainak meg kell beszélniük, hogy ki javítja meg a problémát.
+\end{description}
 GitHub, Inc., wrote the first version of Hubot to automate our company chat room. Hubot knew how to deploy the site, automate a lot of tasks, and be a source of fun in the company. Eventually he grew to become a formidable force in GitHub. But he led a private, messy life. So we rewrote him.
 
 Today's version of Hubot is open source, written in CoffeeScript on Node.js, and easily deployed on platforms like Heroku. More importantly, Hubot is a standardized way to share scripts between everyone's robots.
