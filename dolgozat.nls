@@ -3,16 +3,15 @@
  \nomgroup{A}
 
   \item [{commit message}]\begingroup TODO\nomeqref {3.0}
-		\nompageref{19}
+    \nompageref{19}
   \item [{ElasticSearch}]\begingroup TODO\nomeqref {3.0}\nompageref{17}
   \item [{full-text search engine}]\begingroup TODO\nomeqref {3.0}
-		\nompageref{17}
+    \nompageref{17}
   \item [{IRC}]\begingroup IRC - Internet Relay Protocol\nomeqref {3.0}
-		\nompageref{14}
+    \nompageref{14}
   \item [{Jabber}]\begingroup TODO\nomeqref {3.0}\nompageref{14}
   \item [{Push Notification}]\begingroup TODO\nomeqref {3.0}
-		\nompageref{20}
+    \nompageref{20}
   \item [{QA team}]\begingroup TODO\nomeqref {3.0}\nompageref{20}
   \item [{SaaS}]\begingroup TODO\nomeqref {3.0}\nompageref{16}
-
 \end{thenomenclature}

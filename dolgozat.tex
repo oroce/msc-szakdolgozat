@@ -1,10 +1,12 @@
 \documentclass[12pt,a4paper,english,magyar,oneside]{report}
 
+\usepackage{hyperref}
+\usepackage{url}
 \usepackage{t1enc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern} %szépek lesznek tőle a betűk a pdfben
 \usepackage{textcomp}
-
+\usepackage{xcolor}
 \usepackage{pifont}
 \usepackage[utf8]{inputenc} % mert nem a középkorban vagyunk
 \usepackage[magyar]{babel}
@@ -14,6 +16,7 @@
 \usepackage{csquotes}
 \usepackage{listingsutf8}
 \usepackage{color}
+\usepackage{alltt}
 \definecolor{lightgray}{rgb}{.9,.9,.9}
 \definecolor{darkgray}{rgb}{.4,.4,.4}
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
@@ -50,6 +53,7 @@
    escapeinside=||
 }
 
+
 %%end of javascript listing%%
 
 
@@ -58,7 +62,6 @@
 \usepackage{graphicx}
 
 
-\usepackage{url}
 %\usepackage{subfig}
 %\usepackage{times}
 % 2.5 centis margó mindenütt, bal oldalt +1 centi kötésnek
@@ -86,6 +89,8 @@
 \renewcommand{\nomname}{Rövidítésjegyzék}
 \makenomenclature % roviditesjegyzek
 
+\newcommand{\brparagraph}[1]{\paragraph{#1}\mbox{}\\}
+
 \begin{document}
 \selectlanguage{magyar}
 
@@ -100,20 +105,26 @@
 \chapter{Bevezetés}
 \include{introduction}
 
-\chapter{Continuous Integration}
+\chapter{Folyamatos integráció\\\small Continuous Integration}
+\label{chap:cont_int}
 \include{continuous_integration}
 
-\chapter{Continuous Notification}
+\chapter{Folyamatos értesítés\\\small Continuous Notification}
+\label{chap:cont_not}
 \include{continuous_notification}
 
-\section{Webes alkalmazások}
-\include{web_deployment}
+\chapter{DevOps}
+\include{devops}
 
-\section{Asztali alkalmazások}
-\include{desktop_deployment}
+\chapter{ChatOps}
+\label{chapter:chatops}
+\include{chatops}
 
-%\section{Okostelefon alkalmazások}
-%\include{mobile_deployment}
+\chapter{FutureOps}
+\include{futureops}
+
+\chapter{Összefoglalás}
+\include{summary}
 
 \newpage
 

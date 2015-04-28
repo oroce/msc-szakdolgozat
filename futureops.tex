@@ -1,0 +1,132 @@
+%!TEX root = ./dolgozat.tex
+
+\section{Áttekintés}
+\label{sect:futureops_overview}
+Ahhoz, hogy egy szolgáltatás vagy egy alkalmazás (hosszú távon) működtethető legyen, bemutatásra kerültek a szükséges részek:
+
+\begin{description}
+  \label{dsc:important_stuffs}
+  \item[Folyamatos adatgyűjtés és értesítés]\hfill\\
+  Az alkalmazás és a környezetének adatainak és metrikáinak folyamatos gyűjtése, a jó és a jól működésre való törekedés végett.
+  \item[Gyűjtött adatok elemzése]\hfill\\
+  A nagymennyiségű adatgyűjtés miatt, a zaj csökkentése érdekében cselekvésre sarkalló elemzésre van szükség.
+  \item[Automatizált folyamatok]\hfill\\
+  Az automatizálás segítségével a hibák száma minimalizálható, a feladatok újra és újra megismételhetőek, hordozhatókká, újra felhasználható válnak növelve a tudásátadás lehetőségét.
+  \item[A rendszerek közti kapcsolatok megértése]\hfill\\
+  A szoftverfejlesztő látókör kibővítése, a működtetéshez szükséges környezet való hozzáférés csökkenti a reakcióidőt, a szakmai döntésekhez szükséges idő rövidül, gördülékenyebb lesz.
+  \item[Transzparens kommunikáció]\hfill\\
+  Transzparens kommunikáció, melynek segítségével a szervezet tagjai közvetlenül és azonnal elérhetőek, reszponzívabb eszmecserét és visszakereshető kronológiai tudástárat eredményez.
+\end{description}
+
+{\Large A szervezet célja nem az, hogy mindenki értsen mindenhez hanem, hogy az egyénileg és csoportosan birtokolt tudás megosztása, minél egyszerűbb legyen és mindez minél kevesebb kontextusváltást igényeljen.}
+\hfill\\
+Amennyiben a szervezet \aref{dsc:important_stuffs} listában szereplő elemeket implementálja, akkor rendkívül fontos, hogy az ott elérhető adatok minél egyszerűbben elérhetőek legyenek. Ennek a legjobb módja, ha minden alkalmazás (dokumentáció-, verziókezelő rendszer) nem csak saját felülettel, hanem API-val is rendelkezik, ennek a fontosságát jelzi, hogy az Egyesült Királyság kormánya ennek külön fejezetet szentelt a szolgáltatás kézikönyvében (\cite{uk_gov_build_api}), amelynek minden az állam által előállított szoftvernek meg kell felelnie. Ennek köszönhetően az elosztottan tárolt adatok egy központi helyre tudnak bekerülni, viszont a lényeg nem az, hogy egy alkalmazás által nyújtott szolgáltatások a programozható interfész segítségével egy másik felületen megvalósíthatóak legyenek, hanem:
+
+\begin{itemize}
+  \label{lst:invocing_important_points}
+  \item más alkalmazással való integráció elősegítése
+  \item előzetes bepillantás lehetősége az adatokhoz
+  \item a műveletek egy-egy fázisának kiszervezése
+  \item a változásokról értesítés küldés
+\end{itemize}
+
+\begin{figure}
+  \begin{alltt}
+\colorbox[gray]{0.85}{
+\parbox{\textwidth}{\center{2015. 03. 04.}}
+}
+Emily: Hey @Gavin, last week we signed the contract with
+       the MicroCompany Ltd. company.
+       Have you set up their first invoice with due date 03.31?
+Gavin: Good question.
+Gavin: @hubot search invoice for microcompany
+hubot: There are 2 matches for search "microcompany":
+       \href{http://invoicing.com/invoice/32}{#32} is for MicroCompany with VOID status, 
+       its due date is: 2013. 04. 02. (almost 2 years ago)
+       \href{http://invoicing.com/invoice/33}{#33} is for MicroCompany with PAID status (USD 1300),
+       its due date is: 2013. 04. 02. (almost 2 years ago)
+Gavin: Oh it seems I haven't drafted the new one.
+Gavin: @hubot invoice draft "MicroCompany Ltd." on 2015.03.31.
+hubot: \href{http://invoicing.com/invoice/98}{#DR98} has been drafted for MicroCompany Ltd. with due date 2015.03.31.
+\colorbox[gray]{0.85}{
+\parbox{\textwidth}{\center{2015. 03. 31.}}
+}
+Accounting Software:
+       There is one invoice which is dated for today:
+       \href{http://invoicing.com/invoice/98}{#DR98} for MicroCompany Ltd. 
+       created by @Gavin 27 days ago
+Gavin: Oh almost slipped out of my mind, on it. cc @Emily
+Accounting Software:
+       Gavin added USD 1500 to \href{http://invoicing.com/invoice/98}{#98} and set status to AUTHORISED.
+Emily: Thanks @Gavin.
+Emily: Fyi @Gavin I've just sent #98 to microcompany
+hubot: \href{http://invoicing.com/invoice/98}{#98} is an invoice in 
+AUTHORISED state, with amount USD 1500, its due date is 2015.03.31.
+  \end{alltt}
+  \caption[DUMMY]%
+  {Szolgáltatás integráció, kontextváltás csökkentése}%
+  \label{lst:invoicing_using_chat}
+\end{figure}
+
+A listában szereplő pontok kerültek szemléltetésre \aref{lst:invoicing_using_chat} példában, itt egy szándékosan nem technikai feladattal kerül bemutatásra, ugyanis egy szolgáltatás működtetéséhez nem csak technikai problémákkal kell megküzdeni, hanem sok kommunikáció nem technikai-technikai emberek között zajlik.
+A beszélgetés Emily kérdésével kezdődik, aki azt szeretné tudni Gavintől, hogy előkészítette-e a számlát a példában szereplő cégnek, Gavin fejből nem tudja, viszont ahelyett, hogy megnyitná a számlázó programot, azonnal a beszélgetésből ellenőrizni tudja, hogy a számla már meg lett-e írva (más alkalmazással való integráció elősegítése). Érdemes megfigyelni, hogy a listázott számláknak nem csak az azonosító száma kerül listázásra, amely kattintható elemként jelenik meg, tehát azonnal megtekinthető egy klikkeléssel a számlázórendszerben. Hanem tartalmazza a legfontosabb információkat is (előzetes bepillantás lehetősége az adatokhoz).\hfill\\
+Miután Gavin meggyőződik róla, hogy a számla nincs a rendszerben, anélkül hogy belépne a számlázó szoftverbe, a beszélgetésből közvetlenül könnyen elkészítheti az új számlát Természetesen nem cél a számla teljes elkészítése, csak az elkezdése, hiszen így a már létrejövő piszkozati számlára már lehet hivatkozni azonosítóval (a műveletek egy-egy fázisának kiszervezése).\hfill\\
+Az idő előrehaladtával, amikor a számla esedékessége közeledik, a számlázó rendszer üzenetet küldve (például \aref{section:service_integration} fejezetben bemutatott webhook segítségével) tudja értesíteni, a felelősöket arról, hogy teendő van a számlával. Gavin ezt észlelve, a számla számára klikkelve, a számlázó szoftverbe belépve a számlát be tudja fejezni, amelynek megtörténéséről ismét értesítés kerül küldésre, ezáltal tudatva a többi érintettel az számla állapotváltozását (a változásokról értesítés küldés), mindezt valós időben.\hfill\\
+Érdemes megjegyezni, hogy az érintettek közti kommunikációt nagyban segíteni azáltal, ha valaki egy számlaszámot vagy egy számla linkjét említi a beszélgetésben, akkor a rendszer vagy éppen a robot automatikusan letölti az API-n keresztül a számlaszámhoz tartozó legfontosabb adatokat és megjeleníti azokat.\\
+\hfill\\
+Érdemes továbbá megfigyelni \aref{lst:invoicing_using_chat} példában, hogy miközben egy feladat elvégzésre került, a feladatban a többi érintett is folyamatosan értesülhetett az állapotról, így sokkal könnyen be tudtak csatlakozni a beszélgetésbe, meg lehet érteni a beszélgetés kontextusát, gyorsabban lehet reagálni egy-egy kérdésre.
+Amennyiben a szervezeten belüli központi kommunikáció aszinkron módon zajlik, akkor a kontextusváltások nincsenek ráerőltetve a szervezeti tagokra, hiszen az aktuálisan végzett feladat befejezése után is meg tudják válaszolni a számukra feltett kérdéseket.
+Végül, ha a központi kommunikációs csatornán keresztül kerülnek automatizálásra egy-egy feladat elvégzéséhez szükséges lépések, akkor az adatokhoz hozzáféréssel rendelkezők köre bővülhet, ezáltal csökkentve egy-egy feladat megoldásának idejét.
+Természetesen ez nem azt jelenti, hogy a szervezeten belül bárki bármihez hozzáférhet, legyen az a számlázi rendszer, vagy a chatrendszer egy szobája, a szervezetnek meg kell határoznia az adatokhoz való hozzáférhetőséget, legyen az írási vagy olvasási jog, de a dolgozatnak nem célja ennek meghatározása, ugyanis ez a szabályok mindig az adott szervezet kultúrájától, az adatok milyenségétől és az adott iparágtól is erősen függnek.
+
+\section{Hatásai a szoftverműködésre}
+\Aref{sect:futureops_overview} fejezetben áttekintésre került a szervezet által használt eszközök integrációja hogyan javíthatja a munkavégzés minőségét. Most pedig megvizsgálásra kerül, hogy mire kell figyelni, egy szoftverműködés során, milyen lépések azok, amelyeknek végre kell hajtani, hogy a szolgáltatás felhasználói számára a működtetés szinte láthatatlan legyen.
+
+\brparagraph{Fejlesztési környezet}
+A fejlesztés során \aref{chap:cont_int} és \aref{chap:cont_not} fejezetben bemutatott lépések a legfontosabbak, azaz az adott fejlesztő csapat, az projekt menedzser és egyéb belső érintettek folyamatos tájékoztatása és a visszacsatolás idejének csökkentése, többek között a következő folyamatok során:
+\begin{description}
+  \item[a kódátnézés (code review) során]\hfill\\
+  A kód átnézés a használt szoftverfejlesztési metodologikától függetlenül fontos szerepet kap a fejlesztés során, ezért mind az átnézésért felelős szakember értesítése, mind a kód megírásáért felelős programozó részéről az igény jelen van a minél egyszerűbb és reszponzívabb kommunikációra, mert ugyanaz a kódrészlet újbóli megértése komoly erőforrásokat emészthet el, továbbá egyik szereplőnek sem jó, ha egy kód nem kerül beolvasztásra a főágba vagy esetleg csak hosszú idő elteltével kerül beolvasztásra.
+  \item[a kódminőség javítása]\hfill\\
+  A kódátnézés magas erőforrásigénye miatt (az átnézést végzőnek a minél jobb kódminőség elérése, a logikai hibák megtalálása a célja, a kód írójának pedig a saját munkája eredményének a megvédése a célja, ez gyakran szakmai vitához, egyet nem értéshez vezethet, amelynek feloldása hosszabb időt vehet igénybe) csökkenteni kell a kódátnézés iterációit, ezért a kódminőség automatizált ellenőrzésével (szintaktikai hibák, elérhetetlen kódrészletek) kizárhatóak azok a hibák, amelyek biztosan nem mennének át a kódátnézés folyamatán.
+  \item[folyamatos tesztelés]\hfill\\
+  A folyamatos tesztelés eredménye, amely automatizált tesztesetéknél a korábban megírt tesztek (egység, regressziós, integrációs) kimenetét és a hibás teszt azonosítóját elküldve értesíti a felelős egyént vagy csoportot. A folyamatos tesztelés másik típusa, a manuális tesztek, melyek érkezhetnek a minőségellenörző csapattól (QA) vagy egy az integrációt végző másik csapattól, ezért fontos, hogy a visszacsatolás minél egyszerűbben megoldható legyen.
+  \item[automatizálás]\hfill\\
+  Az alkalmazáshoz kapcsoló feladatok közül, nem csak a produkciós környezetben kell az automatizálást komolyan venni, és aktívan használni, hanem már a fejlesztés során is. Automatizálás magába foglalhatja a konfiguráció menedzsmentet (amelyet szintén tesztelni kell, tehát igaz rá minden a fejlesztési környezet minden pontja is), a tesztelést (egység, több környezetben is használható integrációs tesztek), performancia problémák detektálását.
+\end{description}
+
+\brparagraph{Élesítés}
+Az élesítés az a folyamat, amely során a kód a fejlesztési környezetből a produkciós környezetbe kerül, a dolgozat nem különíti el a kódélesítést (deploy) és a funkcióélesítést (release), mert bár a legtöbb szoftverrendszerben ezek elkülönítésre kerülnek, de a felmerülő pontok, amelyekre figyelmet kell fordítani mindkét esetben ugyanúgy jelen vannak. Az élesítés során a legfontosabb lépések, amelyeket figyelembe kell venni a következők:
+\begin{description}
+  \item[Konfiguráció menedzsment]
+  A konfiguráció menedzsmentről már esett szó a fejlesztési környezet pontjai között, viszont érdemes itt is kiemelni, mert klasszikusan ennél a lépésnél használják, viszont ha két helyen is használatra kerül, az azt jelenti, hogy mindenki magabiztosabban nyúl hozzá, sokkal több kézen fordul meg, sokkal több tapasztalattal fog rendelkezni a szervezet és sokkal kiforrottabbá fog válni a konfiguráció menedzsment.
+  \item[Folyamatos integráció]
+  A fejlesztési környezetnél már erről is szó esett, mégpedig az automizált tesztek és a kódellenőrzés lépeseknél, bár ez így nem lett kijelentve. Tulajdonképpen a folyamatos integráció lépései a kódminőség ellenőrzésével, a tesztek futtatásával kezdődik, míg a fejlesztés során ezek után az eredmény kerül publikálásra, addig az élesítés során egy további plusz lépéssel a kód az éleskörnyezetbe fog kerülni.
+  \item[Változáskövetés]
+  A változáskövetést általában egy változás naplóban (change log) végzik, amely egy projekt megemlítendő változásait tartalmazza válogatott és kronológiailag rendezett formában (\cite{keep_a_changelog}).
+\end{description}
+
+\brparagraph{Hibadetektálás}
+A hibák detektálása az élesítés közbeni és utáni folyamatos feladatként jelentkezik, amelyek az érkező adatfolyamokból kerülnek kiszámításra, ezeknek két típusa van:
+\begin{itemize}
+  \item külső
+  \item belső
+\end{itemize}
+
+A belső adatok az alkalmazás által küldött naplóbejegyzésekből és számosítható metrikákból épülnek fel, míg a külső adatok független ellenőrzésekből (működik-e az alkalmazás, alkalmazás válaszidő értéke, megfelelő válasz érkezik-e a kérésre) érkeznek, amelyek nincsenek kapcsolatban az aktuálisan ellenőrzött rendszerrel. Rendkívül fontos, hogy a hibák detektálása adaptív legyen, mind a környezetre, mind a rendszer aktuális állapotára. Néhány példa ennek szemléltetésére:
+
+\begin{itemize}
+  \item Egy alkalmazás sebessége függ a felhasználók számától, az aktuális időponttól (egy közösségi oldal életében este 6 és 8 óra között feltehetően magas lesz a felhasználók száma), az aktuális időjárástól (hideg esős idő esetén nőhet a felhasználók száma), ezért eltérően kell tudni kezelni a kedd este 6 órát és a vasárnap hajnali 4 órát, mert míg az egyik időpontban a sebességcsökkenés mindössze az aktív használat növekedést jelenti, addig a másik esetben felhetehetően hiba okozza. Ezetén érdemes több metrika együttesét figyelembe venni, illetve időablakokat alkalmazni.
+  \item Hibák közti priorizálás az ügyeleteseket nem szakítja meg a már korábban jelzett hiba felderítése illetve megoldása közben. Ilyen lehet, ha egy adatközpont hálózati problémákkal küzd, akkor nem érdemes értesíteni mindenkit arról is (vagy esetleg alacsonyabb priorizálással), hogy az adott adatközpontban futó alkalmazások is leálltak.
+  \item Akcióra kész hibák használata. Annak ellenére, hogy külső adatfolyamból érkező hibák érthetőek, nem jelenti azt, hogy az azokat követő hibajavítás is egyértelmű lenne vagy esetleg meghatározható lenne. Ezért a több forrásból érkező adatfolyamokat (külső ellenőrzés, alkalmazás napló, konténer napló, hiba előidézésében résztvevő egyéb komponensek naplóüzenetei, metrikái) összegyűjtésével megérthető a hibák a kontextusa, a későbbi ismételt előidézhetőség esélye megnő, szükség esetén tesztesettel lefedhetővé válik.
+\end{itemize}
+
+\brparagraph{Hibaelhárítás}
+A hibaelhárítása a hiba detektálása után kezdődik el, melynek első lépése az incidens kezelő rendszerből érkező értesítés kezelése, majd a beérkező hibához kapcsolódó naplóüzenetek és elérhető grafikonok (hasonlóan, mint \aref{lst:oncall_message} példában látható) megtekintése, a hiba okának detektálása, majd az előzetes szabálygyűjtemény (runbook) alapján történő végrehajtás elkezdése.
+Emellett publikus szolgáltatás vagy végfelhasználót is érintő probléma esetén szokás a szolgáltatás státusz oldalát is frissíteni, hogy reflektálja a fennálló hiba létét, az érintett komponseket és a várható javítás idejét, amennyiben lehetséges. A hiba javítása akár újabb emberek, csoportok bevonását is igényelheti. Gyakran előfordul, hogy a incidens megoldása magának az alkalmazásnak a módosítását is igényli, amely ilyenkor ismét végigmegy az a fejlesztési környezet és az élesítés lépésein.\hfill\\
+A hibajavítás befejeztével az incidens lezárásra kerül, a szolgáltatásért felelősök és  amennyiben szükséges az érintett felhasználók is értesítésre kerülnek.
+
+\brparagraph{Hiba-utóélet}
+Minden hiba után általában két-három nappal később érdemes egy úgynevezett post mortem analízist tartani. A nem közvetlenül a hiba után tartott analízis azért fontos, mert ilyenkor már a hibát övező érzelmek csökkennek (egy éjszaka három órakor érkező riasztás sok negatív érzelemmel fogja eltölteni az ügyeletest), viszont még nem került elfelejtésre a hiba oka és a javítás folyamata. A post mortem analízis egy írásos dokumentummal záródó megbeszélés, amely tartalmazza a hiba körülményeit, a megoldáshoz szükséges akciókat és a későbbi megelőzéshez szükséges lépéseket.\hfill\\
+A modern szervezetekben gyakran alkalmazott metodológia a hibáztatásmentes post mortem (blamess post mortem), amely a hibák okozta szolgáltatáskieséseket a szervezet tanulási folyamataként látják, nem pedig a hibás személy kilétét próbálják meg felfedni és megbüntetni (\cite{blameless_post_mortem}).
+A felelős személy meghatározása egy elosztott rendszerben szinte lehetetlen, ezért érdemes inkább a post mortem analízist egy tanulási lehetőségnek, mint a büntetés egy formájának tekinteni. Továbbá nagy skálázású alkalmazásoknál incidensek gyakran előfordulnak, ezért az üzemeltetőket érdemes támogatni abban, hogy nyíltan beszéljenek a post mortem alkalmával az általuk elvégzütt lépésekről ezáltal csökkentve az incidensek okozta stresszt.
