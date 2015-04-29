@@ -79,7 +79,7 @@ Amennyiben a szervezeten belüli központi kommunikáció aszinkron módon zajli
 Végül, ha a központi kommunikációs csatornán keresztül kerülnek automatizálásra egy-egy feladat elvégzéséhez szükséges lépések, akkor az adatokhoz hozzáféréssel rendelkezők köre bővülhet, ezáltal csökkentve egy-egy feladat megoldásának idejét.
 Természetesen ez nem azt jelenti, hogy a szervezeten belül bárki bármihez hozzáférhet, legyen az a számlázi rendszer, vagy a chatrendszer egy szobája, a szervezetnek meg kell határoznia az adatokhoz való hozzáférhetőséget, legyen az írási vagy olvasási jog, de a dolgozatnak nem célja ennek meghatározása, ugyanis ez a szabályok mindig az adott szervezet kultúrájától, az adatok milyenségétől és az adott iparágtól is erősen függnek.
 
-\section{Hatásai a szoftverműködésre}
+\section{Hatásai\\a szoftverműködésre}
 \Aref{sect:futureops_overview} fejezetben áttekintésre került a szervezet által használt eszközök integrációja hogyan javíthatja a munkavégzés minőségét. Most pedig megvizsgálásra kerül, hogy mire kell figyelni, egy szoftverműködés során, milyen lépések azok, amelyeknek végre kell hajtani, hogy a szolgáltatás felhasználói számára a működtetés szinte láthatatlan legyen.
 
 \brparagraph{Fejlesztési környezet}
@@ -117,7 +117,7 @@ A belső adatok az alkalmazás által küldött naplóbejegyzésekből és szám
 
 \begin{itemize}
   \item Egy alkalmazás sebessége függ a felhasználók számától, az aktuális időponttól (egy közösségi oldal életében este 6 és 8 óra között feltehetően magas lesz a felhasználók száma), az aktuális időjárástól (hideg esős idő esetén nőhet a felhasználók száma), ezért eltérően kell tudni kezelni a kedd este 6 órát és a vasárnap hajnali 4 órát, mert míg az egyik időpontban a sebességcsökkenés mindössze az aktív használat növekedést jelenti, addig a másik esetben felhetehetően hiba okozza. Ezetén érdemes több metrika együttesét figyelembe venni, illetve időablakokat alkalmazni.
-  \item Hibák közti priorizálás az ügyeleteseket nem szakítja meg a már korábban jelzett hiba felderítése illetve megoldása közben. Ilyen lehet, ha egy adatközpont hálózati problémákkal küzd, akkor nem érdemes értesíteni mindenkit arról is (vagy esetleg alacsonyabb priorizálással), hogy az adott adatközpontban futó alkalmazások is leálltak.
+  \item Hibák közti priorizálás az ügyeleteseket nem szakítja meg a már korábban jelzett hiba felderítése, illetve megoldása közben. Ilyen lehet, ha egy adatközpont hálózati problémákkal küzd, akkor nem érdemes értesíteni mindenkit arról is (vagy esetleg alacsonyabb priorizálással), hogy az adott adatközpontban futó alkalmazások is leálltak.
   \item Akcióra kész hibák használata. Annak ellenére, hogy külső adatfolyamból érkező hibák érthetőek, nem jelenti azt, hogy az azokat követő hibajavítás is egyértelmű lenne vagy esetleg meghatározható lenne. Ezért a több forrásból érkező adatfolyamokat (külső ellenőrzés, alkalmazás napló, konténer napló, hiba előidézésében résztvevő egyéb komponensek naplóüzenetei, metrikái) összegyűjtésével megérthető a hibák a kontextusa, a későbbi ismételt előidézhetőség esélye megnő, szükség esetén tesztesettel lefedhetővé válik.
 \end{itemize}
 
