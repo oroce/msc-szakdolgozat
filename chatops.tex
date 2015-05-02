@@ -43,7 +43,7 @@ A chatrendszerbe a robot úgy csatlakozik, ahogyan egy ember is tenné, minden �
 
 \brparagraph{Jobb kommunikáció}
 \label{subsection:better_communication}
-Egy csapatban sok különböző szereplő lehet, amennyiben a csapat agilisan fejleszt, akkor feltehetően lesznek technikai és nem technikai emberek, akik annak ellenére, hogy egy 5-6 fős csapatban dolgoznak differenciált információval és tudással rendelkeznek a terméket illetően. Egy nagyon egyszerű példa, ha a csapat egy olyan termékért felelős, amelyben lehet fizetni, viszont a fizetési szolgáltatás egy hibája, mérhető csökkenést fog okozni a csapat által fejlesztett szoftver mérőszámai alapján. Azonban egy másik szolgáltatás vagy szoftverkomponens állapota könnyen ellenőrizhető egy ChatOps alapú szervezetben, \aref{fig:get_outage_for_payment} példa ezt hivatott bemutatni.
+Egy csapatban sok különböző szereplő lehet, amennyiben a csapat agilisan fejleszt, akkor feltehetően lesznek technikai és nem technikai emberek, akik annak ellenére, hogy egy 5-6 fős csapatban dolgoznak, differenciált információval és tudással rendelkeznek a terméket illetően. Egy nagyon egyszerű példa, ha a csapat egy olyan termékért felelős, amelyért lehet fizetni, viszont a fizetési szolgáltatás egy hibája, mérhető csökkenést fog okozni a csapat által fejlesztett szoftver mérőszámai alapján. Azonban egy másik szolgáltatás vagy szoftverkomponens állapota könnyen ellenőrizhető egy ChatOps alapú szervezetben, \aref{fig:get_outage_for_payment} példa ezt hivatott bemutatni.
 
 \begin{figure}
     \begin{alltt}
@@ -54,7 +54,7 @@ Egy csapatban sok különböző szereplő lehet, amennyiben a csapat agilisan fe
     \label{fig:get_outage_for_payment}
 \end{figure}
 
-Egy másik gyakran előforduló probléma az éjszakai leállások, amikor az ügyeletes akár reggelig a probléma javításán dolgozott és reggel még munkaidő kezdetére nem ért be, akkor könnyen látható, hogy meddig próbálta megjavítani a hibás részt illetve, hogy mit tett a javítás elvégzése érdekében.
+Egy másik gyakran előforduló problémát jelentenek az éjszakai leállások, amikor az ügyeletes akár reggelig a probléma javításán dolgozott és reggel még munkaidő kezdetére nem ért be, akkor könnyen látható, hogy meddig próbálta megjavítani a hibás részt illetve, hogy mit tett a javítás elvégzése érdekében.
 
 \brparagraph{Transzparens}
 
@@ -90,13 +90,13 @@ Bill: hey @Joey, @Paul I will join too because I'm going to implement it
     \label{lst:search_feature_call}
 \end{figure}
 
-Természetesen a centralizálás nem azt jelenti, hogy minden beszélgetést a chaten kell megejteni, hiszen felesleges lenne ennyire központosítani mindent és előbb vagy utóbb feltehetően munkavállalói ellenállás köszönhetően csökkenne a chat használata. Továbbgondolva \aref{lst:search_feature_call} példát, a videóbeszélgetés ugyan nem elérhető chaten, viszont a beszélgetés arról, hogy keresés működésének megbeszélése videóbeszélgetés formájában történt meg az igen, illetve a link a videóbeszélgetéshez (amihez használt szoftver valószínűleg támogatja a videóbeszélgetések rögzítését) elérhető. A példa jól vizualizálja a chat alapú munkavégzés legnagyobb előnyeit: a kronológikus áttekinthetőség, a korábbi beszélgetések kereshetősége, bár ez igaz az emailekre is, viszont itt egy csapat minden tagja megtekintheti, nem csak azok akik rajta voltak a címzett listán.\\
+Természetesen a centralizálás nem azt jelenti, hogy minden beszélgetést a chaten kell megejteni, hiszen felesleges lenne ennyire központosítani mindent és előbb vagy utóbb feltehetően munkavállalói ellenállásnak köszönhetően csökkenne a chat használata. Továbbgondolva \aref{lst:search_feature_call} példát, a videóbeszélgetés ugyan nem elérhető chaten, viszont a beszélgetés arról, hogy a keresés működésének megbeszélése videóbeszélgetés formájában történt meg az igen, illetve ehhez hasonlóan elérhető a videóbeszélgetéshez tartozó link is elérhető (amihez használt szoftver valószínűleg támogatja a videóbeszélgetések rögzítését). A példa jól vizualizálja a chat alapú munkavégzés legnagyobb előnyeit: a kronológikus áttekinthetőséget, a korábbi beszélgetések kereshetőséget, bár ez igaz az emailekre is, viszont itt egy csapat minden tagja megtekintheti, nem csak azok, akik rajta voltak a címzett listán.\\
 
 \brparagraph{Egy interfész}
-A legtöbb szervezet életében időről időre kerülnek bevezetésre új szoftverek, amelyek betanítási folyamatot igényelnek. Ráadásul ha nehezen illeszkednek a szervezeti kultúrába akkor gyakran a munkavállalók ellenségesen állhatnak a bevezetéssel szemben. Egy nagyon egyszerű példán lehetne ezt szemléltetni, ha be szeretne vezetni a szervezet egy munkaidő nyilvántartó szoftvert, akkor annak feltehetően a kitöltéséhez a következő lépéseket végre kell hajtani:
+A legtöbb szervezet életében időről időre kerülnek bevezetésre új szoftverek, amelyek betanítási folyamatot igényelnek. Ráadásul, ha nehezen illeszkednek a szervezeti kultúrába, akkor gyakran a munkavállalók ellenségesen állhatnak a bevezetéssel szemben. Egy nagyon egyszerű példán lehetne ezt szemléltetni, ha be szeretne vezetni a szervezet egy munkaidő nyilvántartó szoftvert, akkor annak a kitöltéséhez feltehetően a következő lépéseket kellene végrehajtani:
 
 \begin{description}
-  \item[Authentikáció]\hfill\\
+  \item[Autentikáció]\hfill\\
   Amennyiben az adott szoftver támogatja, illeszkednie kell a szervezet authenkációjához (LDAP, OpenID), amennyiben ez nem lehetséges abban az esetben a felhasználóknak egy újabb jelszót is meg kell jegyezniük, amely bizonyára nem fogja gyorsítani a bevezetést.
   \item[Érkezés vagy távozás kiválasztása]\hfill\\
   Az érkezés vagy távozás kiválasztása.
@@ -106,7 +106,7 @@ A legtöbb szervezet életében időről időre kerülnek bevezetésre új szoft
   Az alkalmazásból történő kijelentkezés a művelet elvégezése után.
 \end{description}
 \hfill\\
-Ezzel szemben \aref{lst:workhour_with_hubot} ábrán látható egy elképzelt munkaidő nyilvántartás robot segítségével chaten keresztül történő rögzítésel. Könnyen belátható, hogy a robottal történő adminisztrálás sokkal gyorsabb és egyszerűbb, mint egy különálló felületen keresztül.
+Ezzel szemben \aref{lst:workhour_with_hubot} ábrán látható egy elképzelt munkaidő nyilvántartás robot segítségével chaten keresztül történő rögzítéssel. Könnyen belátható, hogy a robottal történő adminisztrálás sokkal gyorsabb és egyszerűbb, mint egy különálló felületen keresztül.
 
 \begin{figure}
   \begin{alltt}
@@ -119,7 +119,7 @@ Bill (17:34): hubot leaving for my daughter's violin concert
     \label{lst:workhour_with_hubot}
 \end{figure}
 
-Természetesen ennek a bevezetése is sokáig eltarthat, hiszen lehet, hogy a szervezet tagjai chaten sem fogják elküldeni az üzenetet a robotnak arról, hogy megérkeztek, mint ahogy a célszoftverbe se lépnének be. Azonban a be nem jelentkezett felhasználókat a szoftver esetleg email utján tudja értesíteni vagy a felettesüket tudja tájokoztatni, addig a robot sokkal jobb felhasználói élmény biztosítása mellett képes ezt megtenni. \Aref{lst:workhour_with_hubot_ux} ábrán ezt lehet megtekinteni. Mivel a chat a kommunikáció központi forrása, ezért a robotnak egyszerűen a felhasználók cselekvéseit kell figyelemmel követnie és azokra reagálnia.
+Természetesen ennek a bevezetése is sokáig eltarthat, hiszen lehet, hogy a szervezet tagjai chaten sem fogják elküldeni az üzenetet a robotnak arról, hogy megérkeztek, mint ahogy a célszoftverbe se lépnének be. Azonban a be nem jelentkezett felhasználókat a szoftver esetleg email utján tudja értesíteni vagy a felettesüket tudja tájékoztatni, addig a robot sokkal jobb felhasználói élmény biztosítása mellett képes ezt megtenni. \Aref{lst:workhour_with_hubot_ux} ábrán ezt lehet megtekinteni. Mivel a chat a kommunikáció központi forrása, ezért a robotnak egyszerűen a felhasználók cselekvéseit kell figyelemmel követnie és azokra reagálnia.
 
 \begin{figure}
   \begin{alltt}
@@ -136,7 +136,7 @@ Steve (09:02): hubot arrived at 08:32
     \label{lst:workhour_with_hubot_ux}
 \end{figure}
 
-Ezen túl egyre több szervezetben a szervezet tagjai már nem csak asztali eszközökön kapcsolódnak az internetre, hanem több eszközről. Ilyen például a BYOD (Bring Your Own Device)\nomenclature{BYOD (Bring Your Own Device)}{Olyan vállalati szabályozás, amely megengedni, hogy a szervezet tagjai a saját eszközeiket használják a vállalati adatok és rendszerek elérésére. Mivel a munkavállalók a céges szabályok ellenére is magukkal viszik az eszközeiket, ezért inkább támogatják őket a szervezetek, ahelyett hogy korlátoznák a használatukat.} irányzat, amellyel azokat a céges szabályokat illetik melyek megengedik, hogy a munkavállalók saját személyes eszközeiket használják a munkavégzéshez, azonban ez lehet:
+Ezen túl egyre több szervezetben a szervezet tagjai már nem csak asztali eszközökön kapcsolódnak az internetre, hanem több eszközről. Ilyen például a BYOD (Bring Your Own Device)\nomenclature{BYOD (Bring Your Own Device)}{Olyan vállalati szabályozás, amely megengedni, hogy a szervezet tagjai a saját eszközeiket használják a vállalati adatok és rendszerek elérésére. Mivel a munkavállalók a céges szabályok ellenére is magukkal viszik az eszközeiket, ezért inkább támogatják őket a szervezetek, ahelyett hogy korlátoznák a használatukat.} irányzat, amellyel azokat a céges szabályokat illetik, melyek megengedik, hogy a munkavállalók saját személyes eszközeiket használják a munkavégzéshez, ez lehet:
 
 \begin{itemize}
   \item asztali számítógép
@@ -147,13 +147,13 @@ Ezen túl egyre több szervezetben a szervezet tagjai már nem csak asztali eszk
   \item könyvolvasó
 \end{itemize}
 
-A lista hosszának csak a képzelet, illetve az elérhető internet képes eszközök számossága szab határt. Ezt a számot csak többszörözi az a tény, hogy ezek az eszközök különböző operációs rendszerek különböző verzióit futtatják. Ezek alapján is könnyen belátható, hogy mennyivel egyszerűbb egy szöveges kommunikációra szakosodott chat rendszert használni, mint egy saját felhasználói interfésszel rendelkező rendszert bevezetni, amely feltehetően nem is fogja támogatja az elérhető eszközök töredékét sem.\\
+A lista hosszának csak a képzelet, illetve az elérhető internetképes eszközök számossága szab határt. Ezt a számot csak többszörözi az a tény, hogy ezek az eszközök különböző operációs rendszerek különböző verzióit futtatják. Ezek alapján is könnyen belátható, hogy mennyivel egyszerűbb egy szöveges kommunikációra szakosodott chat rendszert használni, mint egy saját felhasználói interfésszel rendelkező rendszert bevezetni, amely feltehetően nem is fogja támogatni az elérhető eszközök töredékét sem.\\
 \newline
 Természetesen nem minden szoftver helyettesíthető mindössze egy pár szöveges utasítással, azonban érdemes belegondolni, hogy sok kis adminisztrációs rendszer sokkal felhasználóbarátabb és akár erőforrástakarékosabb lenne, ha csupán néhány parancs kiadásával lehetne irányítani ahelyett, hogy egy komplex felületen keresztül lehet őket elérni, amely ráadásul csak az asztali gépen meghatározott böngészőből érhető el.
 
 \brparagraph{Absztrakció}
-Az absztrakció építése mindig költséges, de a szervezet jövőbeni lehetőségeit nagyban növeli. Ha a fent említett munkaidőszervezési példánál maradva a szervezet a külső szoftver mellett dönt. Viszont ha egy év után arra a döntésre jut a szervezet, hogy a munkaidőnyilvántartás szükséges, viszont a használt szoftvert lecseréli egy jobb piaci ajánlatnak köszönhetően, akkor számolnia kell a munkavállalókban keltett, újabb szoftver bevezetése okozta frusztrációval.\\
-Ha viszont a munkaidőnyilvántartás chaten keresztül kerül megoldásra, a háttérben lévő implementáció vagy szoftver könnyen cserélhető, hiszen dolgozók előtt rejtve volt eddig is, ezért nem is fogják észrevenni, hogy mi történt a háttérben (a használatához szükséges parancsok módosítása nem szükséges).
+Az absztrakció építése mindig költséges, de a szervezet jövőbeni lehetőségeit nagyban növeli, ha a fent említett munkaidőszervezési példánál maradva a szervezet a külső szoftver mellett dönt. Ha azonban egy év után arra a döntésre jut a szervezet, hogy a munkaidőnyilvántartás szükséges és a használt szoftvert lecseréli egy jobb piaci ajánlatnak köszönhetően, akkor számolnia kell a munkavállalókban keltett, újabb szoftver bevezetése okozta frusztrációval.\\
+Ha viszont a munkaidőnyilvántartás chaten keresztül kerül megoldásra, a háttérben lévő implementáció vagy szoftver könnyen cserélhető, hiszen a dolgozók előtt rejtve volt eddig is, ezért nem is fogják észrevenni, hogy mi történt a háttérben (a használatához szükséges parancsok módosítást nem igényelnek).
 
 \brparagraph{Aszinkron kommunikáció}
 
@@ -166,7 +166,7 @@ Szinkron kommunikáció jellemzői:
   \item a résztvevő felek időben egyszerre vesznek részt a kommunikációban
   \item gyors módja a kommunikációnak
   \item rövid reakcióidő
-  \item erős egymásrautaltásg
+  \item erős egymásrautaltság
   \item nagy információáramlás
   \item párhuzamosan csak egy kommunikációban lehet részt venni
   \item jellemző típusai:
@@ -197,20 +197,20 @@ Aszinkron kommunikáció jellemzői:
 
 Az aszinkron kommunikáció jóval lassabb, mint a szinkron, viszont időben nincsenek a résztvevők megkötve, amely természetesen azt jelenti, hogy a reakcióidő megnőhet, illetve lassabb lehet a kommunikáció, csökkenhet a hordozott információmennyiség.\\
 \newline
-Az előző felsorolás alapján könnyen látható, hogy a szinkron kommunikáció sokkal hatékonyabb és gyorsabb, mint aszinkron társa, azonban sok esetben a szinkron nem megvalósítható, illetve nagyobb erőforrás igénnyel rendelkezik, mint az aszikron. A következő példák ezt kívánják bemutatni:
+Az előző felsorolás alapján könnyen látható, hogy a szinkron kommunikáció sokkal hatékonyabb és gyorsabb, mint aszinkron társa, azonban sok esetben a szinkron nem megvalósítható, illetve nagyobb erőforrásigénnyel rendelkezik, mint az aszikron. A következő példák ezt kívánják bemutatni:
 
 \begin{description}
   \item [Földrajzilag elosztott csapatok esetén] \hfill\\
-  Földrajzilag elosztott csapatok vagy csak ideiglesen eltérő időzónában lévő csapatok esetében a szinkron kommunikáció gyakran nem lehetséges, hiszen 9 órás időeltolódás esetén a munkavégzést megnehezíti, ha egymásra kell várni.
+  Földrajzilag elosztott csapatok vagy csak ideiglesen eltérő időzónában lévő csapatok esetében a szinkron kommunikáció gyakran nem lehetséges, hiszen többórás időeltolódás esetén a munkavégzést megnehezíti, ha egymásra kell várni.
   \item [Más feladat végzése közben] \hfill\\
-  A szinkron kommunikáció hatékonyságával vetekedni valóban nem lehet, viszont a szinkron kommunikáció azt jelenti, hogy a kommunikáció megkezdésekor végzett feladatot meg kell szakítani (legalább ideiglenesen), kommunikálni kell, majd a kommunikáció végeztével lehet folytatni a korábban végzett feladatot, amely könnyen belátható, hogy sok megszakításnál a feladat el nem végzésébe torkollhat.
+  A szinkron kommunikáció hatékonyságával vetekedni valóban nem lehet, viszont a szinkron kommunikáció azt jelenti, hogy a kommunikáció megkezdésekor végzett feladatot meg kell szakítani (legalább ideiglenesen), majd a kommunikáció végeztével lehet folytatni a korábban végzett feladatot, amely könnyen belátható, hogy sok megszakításnál a feladat el nem végzésébe torkollhat.
   \item [Információ hiányában] \hfill\\
-  Amennyiben a kommunikációt kezdeményező félnek a kérdésére vagy adatigénylésére a válasz hosszabb ideig tart, ez akár lehet pár perc, óra, napok vagy hónapok, akkor az aszinkron kommunikációnak nincs alternatívája. 
+  Amennyiben a kommunikációt kezdeményező félnek a kérdésére vagy adatigénylésére a válasz hosszabb ideig tart, ez lehet akár pár perc, óra, napok vagy hónapok, akkor az aszinkron kommunikációnak nincs alternatívája. 
 \end{description}
 
 Minden feladat nem rendezhető csak szinkron vagy aszinkron csoportba, ezért érdemes a két kommunikációs formát keverni és egy megfelelő mixet kialakítani, amelyet hozzá lehet illeszteni a szervezeti kultúrához. A túlzásba vitt szinkron kommunikáció azt jelenti, hogy a szervezet rengeteget fog kommunikálni, viszont a feladatok nem lesznek elvégezve a sok megszakításnak köszönhetően. Amennyiben az aszinkron irány erősödik meg, akkor a döntések meghozatala fog lelassulni vagy információhiányos állapotban kerülnek a döntések meghozatalra.
 
-Ha a szervezeten belüli szinkron kommunikációt (telefonhívás, videóhívások) sikerül minimalizálni, akkor lehet növelni a szervezet tagjainak terhelhetőségét és minimalizálni az állandóan kontextusváltás okozta frusztrációt, miközben minden kérdés és válasz dokumentálásra kerül a chatrendszernek köszönhetően.
+Ha a szervezeten belüli szinkron kommunikációt (telefonhívás, videóhívások) sikerül minimalizálni, akkor lehet növelni a szervezet tagjainak terhelhetőségét és minimalizálni az állandó kontextusváltás okozta frusztrációt, miközben minden kérdés és válasz dokumentálásra kerül a chatrendszernek köszönhetően.
 
 \brparagraph{Tanulva végzett munka - Learning by Doing}
 A szervezet felépítésének, mindennapjainak komplexitását jól szemlélteti egy új tag belépése a szervezetbe, akinek meg kell mutatni a munkavégzést. Ezt követketően -az egyedüli használat során- rutin műveletté kell transzformálnia azt, ez mindenki számára nagy stresszor. Hasonlóan problémás lehet, mint a már korábban említett új szoftver bevezetése. Ott bemutatásra is került, hogy miért felhasználóbarátabb egy szöveges üzenetekkel elérhető szoftver.
@@ -223,10 +223,10 @@ A szervezet felépítésének, mindennapjainak komplexitását jól szemlélteti
     \label{fig:learn_by_doing}
 \end{figure}
 
-\Aref{fig:learn_by_doing} képen látható beszélgetés a GitHub szervezetében kívánja bemutatni, hogyan tanulnak az emberek miközben végzik a munkájukat. Aki nem ért valamit, kérdezhet és miközben megkapja a választ, már az eredmény is láthatóvá válik. Ha később elfelejtené, akkor bármikor visszalapozhat az első napján született beszélgetések naplójához, amikor megmutatták neki a parancs működését. Továbbá a kereső bárki számára elérhető, és mindenkinek az üzenete elérhető, ezért megnézhető, hogy ki milyen parancsokat használ egy-egy feladat elvégzésére.
+\Aref{fig:learn_by_doing} képen látható beszélgetés a GitHub szervezetében kívánja bemutatni, hogyan tanulnak az emberek, miközben végzik a munkájukat. Aki nem ért valamit, kérdezhet és miközben megkapja a választ, már az eredmény is láthatóvá válik. Ha később elfelejtené, akkor bármikor visszalapozhat az első napján született beszélgetések naplójához, amikor megmutatták neki a parancs működését. Továbbá a kereső bárki számára elérhető, és mindenkinek az üzenete elérhető, ezért megnézhető, hogy ki milyen parancsokat használ egy-egy feladat elvégzésére.
 
 \brparagraph{Incidens menedzsment új szintje}
-Az incidens menedzsment egy nehéz dolog, ugyanis gyakran éjszaka kell reagálni a felbukkanó hibákra a Runbook\nomenclature{Runbook}{A szoftverek működtetésének és azok működése során fellépő incidensek kezelésének lépéseit tartalmazó gyűjtemény.} által meghatározott módon. A ChatOps előnyeinek felsorolása közül nem véletlen kerül utoljára tárgyalásra ez a fontos terület, ugyanis ebben egyesül a chat alapú munkavégzés a legtöbb pozitív tulajdonsága.\\
+Az incidens menedzsment egy nehéz dolog, ugyanis gyakran éjszaka kell reagálni a felbukkanó hibákra a Runbook\nomenclature{Runbook}{A szoftverek működtetésének és azok működése során fellépő incidensek kezelésének lépéseit tartalmazó gyűjtemény.} által meghatározott módon. A ChatOps előnyeinek felsorolása közül nem véletlen kerül utoljára tárgyalásra ez a fontos terület, ugyanis ebben egyesül a chat alapú munkavégzés legtöbb pozitív tulajdonsága.\\
 Az incidensek megfelelő kezeléséhez szükségesek a következők:
 \begin{itemize}
   \item kezelnie kell az incidens hibajegyét
@@ -281,5 +281,5 @@ Brian (3:00): Thanks @Simon, I tried my best, the error is still on
   \item A hiba meg nem javítása esetén nem szükséges felvilágosítani a következő ügyelest, ugyanis az előzmények megtekintésével gyorsan világossá válhat számára is, hogy milyen műveletek lettek végrehajtva a hiba megjelenése óta.
 \end{itemize}
 
-Ahhoz, hogy az incidens menedzsment ennyire automatizáltan tudjon működni és ki lehessen használni a chat javára felsorolt előnyöket erős szervezeti támogatottságra van szükség, és a chaten található adatok kell használni, mint az információ egyetlen forrása. Ezen felül minden rendszernek (incidens menedzsment szoftver, monitorozó rendszer, metrika/napló rendszer) rendelkeznie kell programozható interfésszel, melyen keresztül a robot képes az információkhoz való hozzáférést biztosítani.\\
-Ebben a részben nem került tárgyalásra, de mindennek a működéséhez szükséges, hogy az alkalmazásokból a megfelelő metrikák beküldésre kerülnek, a hibák a központi naplózó rendszerbe bekerülnek, a monitorozható végpontok nem fals negatív adatokat szolgáltatnak. Ezeknek a megfelelő működése a fejlesztési csapat felelőssége.
+Ahhoz, hogy az incidens menedzsment ennyire automatizáltan tudjon működni és ki lehessen használni a chat javára felsorolt előnyöket, erős szervezeti támogatottságra van szükség, és a chaten található adatokat kell használni, mint az információ egyetlen forrását. Ezen felül minden rendszernek (incidens menedzsment szoftver, monitorozó rendszer, metrika/napló rendszer) rendelkeznie kell programozható interfésszel, melyen keresztül a robot képes az információkhoz való hozzáférést biztosítani.\\
+Ebben a részben nem került tárgyalásra, de mindennek a működéséhez szükséges, hogy az alkalmazásokból a megfelelő metrikák beküldésre kerüljenek, a hibák a központi naplózó rendszerbe bekerülnek, a monitorozható végpontok nem fals negatív adatokat szolgáltatnak. Ezeknek a megfelelő működése a fejlesztési csapat felelőssége.
