@@ -8,7 +8,7 @@ Mind a ChatOps név, mind pedig az első implementáció a GitHub cégnek kösz�
 A másik fontos irány, ami megalapozta a ChatOps létrejöttét az maga az Ops része a szónak, vagyis az üzemeltetés. A GitHub már kezdetek óta a DevOps filozófiát követi, amelynek köszönhetően egy-egy termékeket több csapat is fejleszt, a csapatok tagjai folyamatosan fluktuálódnak, keverednek.  2014-ben egy átlagos héten a fő terméken 67 ember dolgozott (\cite{github_product_team}), amely azt jelenti, hogy a hét bármely időszakában legalább 67 ember állíthatta élesbe a terméket, ugyanis nem csak teljesen kész fejlesztések kerülhetnek élesítésre, köszönhetően a GitHub által is aktívan alkalmazott funkciókapcsolóknak (feature flag)\nomenclature{funkciókapcsoló (feature flag)}{Az élesítésnek egy olyan formája, amely során a funkció elérhető produkciós környezetben, viszont csak a kiválasztott felhasználók számára. A kapcsoló használata bevált módszer a kísérleti-, félkész-, validálás alatt álló funkciók bevezetésére} köszönhetően (\cite{github_feature_flag}). Ahhoz viszont, hogy bárki bármikor élesíthessen egy kész vagy akár csak prototípus szintjén lévő fejlesztést, teljes transzparencia szükséges, minden résztvevőnek látnia kell, hogy éppen valaki élesít vagy valaki már foglalkozik egy élesítés okozta problémával.\\
 \Aref{fig:hubot_deploy} ábrán látható, ahogy az élesítés utasítás kiadásra kerül. A jelen esetben egy speciális verziója a kódnak (smoke-perf) az éles szerverek egy részére (fe1) kerül ki, ez a chatben mindenki számára látható és egyértelmű, hiszen csak angol nyelvű kifejezések kerülnek használatra a robot vezérlésére.
 
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
     \includegraphics[scale=1.4]{assets/pager_sup.jpg}%
     \caption[DUMMY]%
@@ -18,7 +18,7 @@ A másik fontos irány, ami megalapozta a ChatOps létrejöttét az maga az Ops 
 
 \Aref{fig:hubot_status} ábrán viszont már látható, amint egy elrontott élesítés után értesíteni kell az érintetteket, arról hogy a művelet sikertelen volt, ezért vissza kell vonni. Ennek a parancsnak a nagyszerűsége az, hogy nem csak a chaten aktív emberek látják, hanem frissíti a szolgáltatás publikus státusz oldalát is (\url{https://status.github.com}).
 
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \begin{minipage}{.45\textwidth}
     \centering
@@ -43,11 +43,11 @@ A chatrendszerbe a robot úgy csatlakozik, ahogyan egy ember is tenné, minden �
 
 \brparagraph{Jobb kommunikáció}
 \label{subsection:better_communication}
-Egy csapatban sok különböző szereplő lehet, amennyiben a csapat agilisan fejleszt, akkor feltehetően lesznek technikai és nem technikai emberek, akik annak ellenére, hogy egy 5-6 fős csapatban dolgoznak, differenciált információval és tudással rendelkeznek a terméket illetően. Egy nagyon egyszerű példa, ha a csapat egy olyan termékért felelős, amelyért lehet fizetni, viszont a fizetési szolgáltatás egy hibája, mérhető csökkenést fog okozni a csapat által fejlesztett szoftver mérőszámai alapján. Azonban egy másik szolgáltatás vagy szoftverkomponens állapota könnyen ellenőrizhető egy ChatOps alapú szervezetben, \aref{fig:get_outage_for_payment} példa ezt hivatott bemutatni.
+Egy csapatban sok különböző szereplő lehet, amennyiben a csapat agilisan fejleszt, akkor feltehetően lesznek technikai és nem technikai emberek, akik annak ellenére, hogy egy 5-6 fős csapatban dolgoznak, differenciált információval és tudással rendelkeznek a terméket illetően. Egy nagyon egyszerű példa, ha a csapat egy olyan termékért felelős, amelyért lehet fizetni, viszont a fizetési szolgáltatás egy hibája, mérhető csökkenést fog okozni a csapat által fejlesztett szoftver mérőszámai alapján. Azonban egy másik szolgáltatás vagy szoftverkomponens állapota könnyen ellenőrizhető egy ChatOps alapú szervezetben, \aref{fig:get_outage_for_payment} példa ezt hivatott bemutatni.\\
 
-\begin{figure}
+\begin{figure}[H]
     \begin{alltt}
-@hubot payment incident? on last week
+    @hubot incident? for payment on last week
     \end{alltt}
     \caption[DUMMY]%
     {Az előző heti incidensek listázása a fizetési rendszerhez}%
@@ -74,7 +74,7 @@ Egy szervezet általában sok formáját használja a kommunikációnak:
 Azonban a sok eszköznek köszönhetően biztosan kimaradnak olyan érintettek, akiknek szükségük lenne információra, viszont ha mindezt egy könnyen elérhető felületen keresztül centralizálják, akkor mindenki számára könnyebbé válik az információhoz való hozzáférés.\\
 \Aref{lst:search_feature_call} példa kívánja bemutatni, hogy a chat, mint munkaszervezési platform miért tud jól működni. Ha a példában látható Joey és Paul a beszélgetést telefonon vagy emailben ejti meg, akkor Bill semmiképp sem tudott volna csatlakozni a beszélgetéshez, és az implementáció csak egy későbbi szakaszában derült volna fény a Bill által említett problémára.
 
-\begin{figure}
+\begin{figure}[H]
   \begin{alltt}
 Joey: @coworker2: We should talk about the new search feature!
 Paul: Sure, a quick videocall?
@@ -108,7 +108,7 @@ A legtöbb szervezet életében időről időre kerülnek bevezetésre új szoft
 \hfill\\
 Ezzel szemben \aref{lst:workhour_with_hubot} ábrán látható egy elképzelt munkaidő nyilvántartás robot segítségével chaten keresztül történő rögzítéssel. Könnyen belátható, hogy a robottal történő adminisztrálás sokkal gyorsabb és egyszerűbb, mint egy különálló felületen keresztül.
 
-\begin{figure}
+\begin{figure}[H]
   \begin{alltt}
 Bill (08:32): hubot arrived
 ...
@@ -121,7 +121,7 @@ Bill (17:34): hubot leaving for my daughter's violin concert
 
 Természetesen ennek a bevezetése is sokáig eltarthat, hiszen lehet, hogy a szervezet tagjai chaten sem fogják elküldeni az üzenetet a robotnak arról, hogy megérkeztek, mint ahogy a célszoftverbe se lépnének be. Azonban a be nem jelentkezett felhasználókat a szoftver esetleg email utján tudja értesíteni vagy a felettesüket tudja tájékoztatni, addig a robot sokkal jobb felhasználói élmény biztosítása mellett képes ezt megtenni. \Aref{lst:workhour_with_hubot_ux} ábrán ezt lehet megtekinteni. Mivel a chat a kommunikáció központi forrása, ezért a robotnak egyszerűen a felhasználók cselekvéseit kell figyelemmel követnie és azokra reagálnia.
 
-\begin{figure}
+\begin{figure}[H]
   \begin{alltt}
 Steve (08:32): <answering question>
 Steve (08:35): <asking question>
@@ -215,7 +215,7 @@ Ha a szervezeten belüli szinkron kommunikációt (telefonhívás, videóhívás
 \brparagraph{Tanulva végzett munka - Learning by Doing}
 A szervezet felépítésének, mindennapjainak komplexitását jól szemlélteti egy új tag belépése a szervezetbe, akinek meg kell mutatni a munkavégzést. Ezt követketően -az egyedüli használat során- rutin műveletté kell transzformálnia azt, ez mindenki számára nagy stresszor. Hasonlóan problémás lehet, mint a már korábban említett új szoftver bevezetése. Ott bemutatásra is került, hogy miért felhasználóbarátabb egy szöveges üzenetekkel elérhető szoftver.
 
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
     \includegraphics[scale=.6]{assets/github_disk_how_is_it.png}%
     \caption[DUMMY]%
@@ -239,7 +239,7 @@ Az incidensek megfelelő kezeléséhez szükségesek a következők:
   \item ha nem sikerül elhárítani a hibát az ügyelet lejártáig, tájékoztatni kell a következő ügyeletest
 \end{itemize}
 \hfill\\
-\begin{figure}
+\begin{figure}[H]
   \begin{alltt}
 hubot (1:12): Failure detected in frontend, alert created with id 1337:
               http://yourduty.com/incident/frontend/1337, @Brian has 

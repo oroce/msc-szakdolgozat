@@ -3,7 +3,7 @@
  \nomgroup{A}
 
   \item [{BYOD (Bring Your Own Device)}]\begingroup Olyan vállalati szabályozás, amely megengedni, hogy a szervezet tagjai a saját eszközeiket használják a vállalati adatok és rendszerek elérésére. Mivel a munkavállalók a céges szabályok ellenére is magukkal viszik az eszközeiket, ezért inkább támogatják őket a szervezetek, ahelyett hogy korlátoznák a használatukat.\nomeqref {5.0}
-		\nompageref{38}
+		\nompageref{39}
   \item [{commit message}]\begingroup Az a szöveg, amely a feltöltött kód mellé kerül csatolásra. Általában rövid, lényegretörő üzenet, amely összefoglalja a kód által elvégzett műveletet. Az üzenet tartalmazhat olyan paramétert, amely alapján az üzenetek más üzenetekhez rendelhetők, illetve csoportosíthatóak. Gyakran szokás az üzenetben jelezni a kapcsoló hibajegy azonosítóját.\nomeqref {3.0}
 		\nompageref{22}
   \item [{full-text search engine}]\begingroup Olyan adatbázisokat szokás full text search engine-nek nevezni, amelyek szövegkeresésre nyújtanak megoldást. Ezek a rendszerek meg tudják különböztetni az általános célú szavakat, és a szövegbányászati algoritmusoknak köszönhetően a szó szinonimáit, csonka szavakat is képesek felismerni. A legtöbbet használt szövegkeresési motor a Lucene, amely többek között az ElasticSearch és a Solr adatbázisok alapjait adja.\nomeqref {3.0}
@@ -23,7 +23,7 @@
   \item [{QA team}]\begingroup A minőségbiztosítási csapat, amely a szoftver manuális tesztelését és a tesztelésautomaziálást végzi. Feladata a szoftver hibáinak felderítése, az előzetesen működés ellenőrzése. A minőségbiztosítási csapatnak nem feladata a hibák kijavítása.\nomeqref {3.0}
 		\nompageref{23}
   \item [{Runbook}]\begingroup A szoftverek működtetésének és azok működése során fellépő incidensek kezelésének lépéseit tartalmazó gyűjtemény.\nomeqref {5.0}
-		\nompageref{43}
+		\nompageref{44}
   \item [{SaaS}]\begingroup Software as a Service, azaz olyan szoftverértékesítési forma, amely során a vásárló előfizetés útján fér hozzá a szoftverhez. A SaaS modell esetén az alkalmazás központilag hosztolt és általában vékony kliensről (leggyakrabban böngésző) kerül elérésre.\nomeqref {3.0}
 		\nompageref{19}
   \item [{spagetti kód}]\begingroup A kifejezést olyan programkódra használják pejoratív értelemben, amelyek komplex vagy kevésbé komplex feladatot struktúrálatlanul, átláthatatlanul oldalanak.\nomeqref {2.0}
