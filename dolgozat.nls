@@ -4,7 +4,7 @@
 
   \item [{BYOD (Bring Your Own Device)}]\begingroup \hfill\\Olyan vállalati szabályozás, amely megengedni, hogy a szervezet tagjai a saját eszközeiket használják a vállalati adatok és rendszerek eléréséhez. Mivel a munkavállalók a céges szabályok ellenére is magukkal viszik az eszközeiket, ezért inkább támogatják a használatukat, ahelyett hogy korlátoznák.\nomeqref {5.0}
 		\nompageref{41}
-  \item [{commit message}]\begingroup \hfill\\Az a szöveg, amely a feltöltött kód mellé kerül csatolásra. Általában rövid, lényegretörő üzenet, amely összefoglalja a módosított kód által elvégzett műveletet. Az üzenet tartalmazhat olyan paramétert, amely alapján az üzenetek más üzenetekhez rendelhetők, illetve csoportosíthatóak. Gyakran szokás az üzenetben jelezni a kapcsoló hibajegy azonosítóját.\nomeqref {3.0}
+  \item [{commit message}]\begingroup \hfill\\Az a szöveg, amely a feltöltött kód mellé kerül csatolásra. Általában rövid, lényegretörő üzenet, amely összefoglalja a módosítást. Az üzenet tartalmazhat olyan paramétert, amely alapján az üzenetek más üzenetekhez rendelhetők, illetve csoportosíthatóak. Gyakran szokás az üzenetben jelezni a kapcsolódó hibajegy azonosítóját.\nomeqref {3.0}
 		\nompageref{26}
   \item [{full-text search engine}]\begingroup \hfill\\Olyan adatbázisokat neveznek full text search engine-nek, amelyek szövegkeresésre nyújtanak megoldást. Ezek a rendszerek meg tudják különböztetni az általános célú szavakat, és a szövegbányászati algoritmusoknak köszönhetően a szó szinonimáit, csonka szavakat is képesek felismerni. A legtöbbet használt szövegkeresési motor a Lucene, amely többek között az ElasticSearch és a Solr adatbázisok alapjait adja.\nomeqref {3.0}
 		\nompageref{21}
@@ -14,7 +14,7 @@
 		\nompageref{30}
   \item [{IRC}]\begingroup \hfill\\A mozaikszó az Internet Relay Protocol összevonásának eredménye. 1988-ban azonnali üzenetváltásra készített protokoll, a mai napig nagy felhasználótábornak örvend, a nyílt protokollnak és könnyű integrációnak köszönhetően. A beszélgetések szobákba rendezhetőek, viszont csak szöveges üzenetek továbbítására használható.\nomeqref {3.0}
 		\nompageref{19}
-  \item [{Jabber}]\begingroup \hfill\\Egy XMPP (Extensible Messaging and Presence Protocol) alapú instant üzenetküldésre alkalmas rendszer. Csoportos és egy az egy közötti beszélgetések lebonyolítására is alkalmas. A nyílt protokollnak köszönhetően sok kompatibilis kliens és szerverimplementáció is létezik.\nomeqref {3.0}
+  \item [{Jabber}]\begingroup \hfill\\Egy XMPP (Extensible Messaging and Presence Protocol) alapú instant üzenetküldésre alkalmas rendszer. Csoportos és egy-az-egy közötti beszélgetések lebonyolítására is alkalmas. A nyílt protokollnak köszönhetően sok kompatibilis kliens és szerverimplementáció is létezik.\nomeqref {3.0}
 		\nompageref{19}
   \item [{PaaS}]\begingroup \hfill\\Platform as a Service a felhőszolgáltatások egy típusa, amely a számítási kapacitáson túl a szoftverkomponensek futtatására már elő van készítve, azaz az infrastruktúra kiépítése és karbantartása a szolgáltatás része. A leggyakrabban használt PaaS szolgáltatók az AWS Beanstalk, Heroku.\nomeqref {4.0}
 		\nompageref{30}
@@ -26,7 +26,7 @@
 		\nompageref{46}
   \item [{SaaS}]\begingroup \hfill\\Software as a Service, azaz olyan szoftverértékesítési forma, amely során a vásárló előfizetés útján fér hozzá a szoftverhez. A SaaS modell esetén az alkalmazás központilag hosztolt és általában vékony kliensről (leggyakrabban böngésző) kerül elérésre.\nomeqref {3.0}
 		\nompageref{21}
-  \item [{spagetti kód}]\begingroup \hfill\\A kifejezést olyan programkódra használják pejoratív értelemben, amelyek komplex vagy kevésbé komplex feladatot struktúrálatlanul, átláthatatlanul oldalanak meg.\nomeqref {2.0}
+  \item [{spagetti kód}]\begingroup \hfill\\A kifejezést olyan programkódra használják pejoratív értelemben, amelyek komplex vagy kevésbé komplex feladatot struktúrálatlanul, átláthatatlanul oldalanak meg. A spagetti kód létrejöttének okai között szerepel a használt technológia megfelelő ismeretének hiánya, a programozó felkészületlensége vagy a folyamatosan változó specifikáció okozta folyamatos funkciófejlesztés, anélkül, hogy a programkód refaktorálásra kerülne.\nomeqref {2.0}
 		\nompageref{15}
 
 \end{thenomenclature}

@@ -1,11 +1,11 @@
 %!TEX root = /Users/oroce/Documents/msc-szakdolgozat/dolgozat.tex
 
-Az informatikai fejlesztések evolúciójának köszönhetően megszületett agilis irányzatok (agilis fejlesztés, scrum, kanban irány, extrém programming) megszüntették a klasszikus funkcionális csapatokfelépítést, ennek a következő iterációja a DevOps irányzat, amely a fejlesztés (\textbf{Dev}elopment) és az üzemeltetés (\textbf{Op}erations) szavaknak a keresztezéséből született meg.
+Az informatikai fejlesztések evolúciójának köszönhetően megszületett agilis irányzatok (agilis fejlesztés, scrum, kanban irány, extrém programozás) megszüntették a klasszikus funkcionális csapatok felépítést, ennek a következő iterációja a DevOps irányzat, amely a fejlesztés (\textbf{Dev}elopment) és az üzemeltetés (\textbf{Op}erations) szavaknak a keresztezéséből született meg.
 
-\section{Kialakulása}
+\section[A DevOps munkakör kialakulása]{Kialakulása}
 
-\brparagraph{Keresztfunkciós és termékcsapatok}
-A keresztfunkciós (cross-functional) csapatok és termékcsapatok létrejöttével az egy-egy funkcióra specializálódott csapatok (minőségbiztosítás, frontend, middleware, backend csapatok) felbomlottak és kész szolgáltatások fejlesztésére rendezkedtek be. A szolgáltatást nyújthatják akár cégen belül, akár cégen kívül, de a csapat felelőssége a következőkre terjed ki:
+\subsection*{Keresztfunkciós és termékcsapatok}
+A keresztfunkciós (cross-functional) csapatok és termékcsapatok létrejöttével az egy-egy funkcióra specializálódott csapatok (minőségbiztosítás, frontend, middleware, backend csapatok) felbomlottak, és kész szolgáltatások fejlesztésére rendezkedtek be. A szolgáltatást nyújthatják akár cégen belül, akár cégen kívül, de a csapat felelőssége a következőkre terjed ki:
 \begin{itemize}
   \item tervezés
   \item megvalósítás
@@ -18,10 +18,10 @@ A keresztfunkciós (cross-functional) csapatok és termékcsapatok létrejötté
 \end{itemize}
 Így pedig a fejlesztés és az üzemeltetés szétválasztása a szervezet méretétől függetlenül a csapat méretét figyelembe véve túl költséges lenne.
 
-\brparagraph{A felhőalapú szolgáltatások}
-A felhőalapú szolgáltatások előretörésével, az infrastruktúra alapú (\nomenclature{IaaS}{\hfill\\Infrastructure as a Service a felhő alapú szolgáltatások egy olyan típusa, amelyben nem egy konkrét eszköz kerül értékesítésre, hanem a számítási kapacitás egy virtualizált környezetben. A legismertebb ilyen szolgáltatók az Amazon Web Services, Joyent és Google Cloud.}) szolgáltatások tekintetében valamelyest, de a platform alapúaknál (\nomenclature{PaaS}{\hfill\\Platform as a Service a felhőszolgáltatások egy típusa, amely a számítási kapacitáson túl a szoftverkomponensek futtatására már elő van készítve, azaz az infrastruktúra kiépítése és karbantartása a szolgáltatás része. A leggyakrabban használt PaaS szolgáltatók az AWS Beanstalk, Heroku.}) teljességgel kijelenthető, hogy az üzemeltetési feladatok csökkennek és egy kisebb csapatban nincs szükség dedikált személyre. Természetesen ez nem jelenti, hogy kevesebb a feladat, csupán a feladatok alakulnak át, hiszen egy-egy számítási egység megfeleltethető egy-egy alkalmazásnak, amelynek köszönhetően a hosztok provizionálása szükségtelen, csupán az alkalmazások provizionálására van szükség.
+\subsection*{A felhőalapú szolgáltatások}
+A felhőalapú szolgáltatások előretörésével, az infrastruktúra alapú (IaaS\nomenclature{IaaS}{\hfill\\Infrastructure as a Service a felhő alapú szolgáltatások egy olyan típusa, amelyben nem egy konkrét eszköz kerül értékesítésre, hanem a számítási kapacitás egy virtualizált környezetben. A legismertebb ilyen szolgáltatók az Amazon Web Services, Joyent és Google Cloud.}) szolgáltatások tekintetében valamelyest, de a platform alapúaknál (PaaS\nomenclature{PaaS}{\hfill\\Platform as a Service a felhőszolgáltatások egy típusa, amely a számítási kapacitáson túl a szoftverkomponensek futtatására már elő van készítve, azaz az infrastruktúra kiépítése és karbantartása a szolgáltatás része. A leggyakrabban használt PaaS szolgáltatók az AWS Beanstalk, Heroku.}) teljességgel kijelenthető, hogy az üzemeltetési feladatok csökkennek és egy kisebb csapatban nincs szükség dedikált személyre. Természetesen ez nem jelenti, hogy kevesebb a feladat, csupán a feladatok alakulnak át, hiszen egy-egy számítási egység megfeleltethető egy-egy alkalmazásnak, amelynek köszönhetően a hosztok provizionálása szükségtelen, csupán az alkalmazások provizionálására van szükség.
 
-\brparagraph{Transzparencia a fejlesztés és az üzemeltetés területén}
+\subsection*{Transzparencia a fejlesztés és az üzemeltetés területén}
 \begin{quote}
 DevOps is the practice of operations and development engineers participating together in the entire service lifecycle, from design through the development process to production support.
 \end{quote}
@@ -33,17 +33,17 @@ Mueller megfogalmazása alapján könnyen belátható, hogy a fejlesztők és az
 Továbbá a két munkakör mélyebb integrációjával a fejlesztés állapotai (development, staging, production) érthetőbbé válnak az érintettek számára, ugyanis míg az üzemeltetés a fejlesztés első lépéseit nem látja, így automatizálni, optimalizálni sem tudja, illetve közvetlenül nem tud segítséget nyújtani az új eszközök kiválasztásában, addig a fejlesztők az éles környezetben felmerülő problémákkal nincsenek tisztában. Ha viszont az üzemeltetés részt vesz a fejlesztésben, megérthetik az egy-egy funkció mögött rejlő döntéséket, megismerhetik az alkalmazás gyenge pontjait és hiba esetén sokkal hamarabb tudják lokalizálni a problémát vagy akár még a fejlesztési szakaszban kijavításra kerülhet a hiba. A fejlesztők megérthetik az infrastruktúra határait, a konfiguráció menedzsmentet és mindezek hatásait az alkalmazásra.\\
 A DevOps irányzat akkor tud a legsikeresebb lenni, ha a szervezet illetve a szervezet tagjai nem egy új szereplőként tekintenek rá, hanem a szervezeti kultúrába integrálják, az ugyanis nem más, mint a tudásmegosztásnak egy olyan formája, amely mind az egyéni, mind a szervezeti érdekeket is szolgálja.
 
-\section{Szerepe}
+\section[A DevOps munkakör szerepe]{Szerepe}
 
-A DevOps munkakör szerepe a visszajelzések felgyorsulásával párhuzamosan került elő. \Aref{chap:cont_int} fejezetben bemutatásra került a folyamatos integráció, a tesztvezérelt fejlesztés fontossága, amelyek sokkal mélyebb architekturális tudást feltételeznek, mint amire egy klasszikus programozónak szüksége van. De ez szintén igaz \aref{chap:cont_not} fejezetben bemutatott folyamatos értesítésekre is, hiszen a szoftver folyamatosan tesztelve van, folyamatosan naplóbejegyzéseket küld, melyeknek a megértéséhez az egész rendszer felépítésével kell tisztában lenni. Természetesen ez a fajta munkakör kialakulása amellett, hogy egyesíti a fejlesztők és a üzemeltetők tudását és ahhoz vezet, hogy a felelősségi körük is összeadódik.\\
-Míg a megnövekedett felelősség távol tarthatja a szervezet tagjait a DevOps munkakörtől, addig mind a szoftver, mind a szervezet nagyon sokat tanulhat és profitálhat az egyesített munkakör okozta horizontális látásmódtól.
+A DevOps munkakör szerepe a visszajelzések felgyorsulásával párhuzamosan került elő. \Aref{chap:cont_int}. fejezetben bemutatásra került a folyamatos integráció, a tesztvezérelt fejlesztés fontossága, amelyek sokkal mélyebb architekturális tudást feltételeznek, mint amire egy klasszikus programozónak szüksége van. De ez szintén igaz \aref{chap:cont_not}. fejezetben bemutatott folyamatos értesítésekre is, hiszen a szoftver folyamatosan tesztelve van, folyamatosan naplóbejegyzéseket küld, melyeknek a megértéséhez az egész rendszer felépítésével kell tisztában lenni. Természetesen ez a fajta munkakör amellett, hogy egyesíti a fejlesztők és a üzemeltetők tudását, ahhoz vezet, hogy a korábban egymástól különálló munkakörök felelősségi körei is összeadásra kerülnek.\\
+Míg a megnövekedett felelősség távol tarthatja a szervezet tagjait a DevOps munkakörtől, addig mind a szoftver, mind a szervezet nagyon sokat tanulhat és profitálhat az egyesített munkakör okozta horizontális látásmódból.
 
-\brparagraph{Konfiguráció menedzsment}
+\subsection*{Konfiguráció menedzsment}
 A konfiguráció menedzsment, illetve az automatizálás a DevOps munkakör leggyakrabban emlegett előnyei. Mivel a DevOps szakemberek mind a fejlesztési, mind a tesztelési, mind a produkciós környezetben felmerülő problémákkal tisztában vannak, viszont különböző környezetekben megszerzett tudásukat könnyen át tudják transzformálni egy másik környezetre, ezért olyan pontokon is tudnak automatizálást végezni, mely nagyban növelheti a hatékonyságot és magabiztosságot. Ilyen például a környezetfüggetlen konfiguráció menedzsment, mely a fejlesztési környezetben munkát végzők napi rutinjait egyszerűsíti és a tesztelési lehetőségeiket növeli.
 
-\brparagraph{Incidens menedzsment}
+\subsection*{Incidens menedzsment}
 Az incidensek kezelése mindig nehéz dolog, főleg olyan esetekben, amikor nehéz meghatározni, hogy a szoftverrendszer mely részegysége okozza a problémát. A probléma megoldása leginkább akkor tud elhúzódni, ha az incidens kezelő rendelkezik vakfoltokkal a rendszert illetően, ezért a hiba lokalizálása is problémát okoz.
 Ha egy, a rendszer részegységeivel és a működtetett kóddal tisztában lévő személyhez kerül egy incidens, nagyobb valószínűséggel fogja a hiba okát megtalálni, és akár ki is javítani.
 
-\brparagraph{Jobban integrált folyamatok}
+\subsection*{Jobban integrált folyamatok}
 Mivel a klasszikus üzemeltetés nem igényel részvételt egy-egy termékcsapat életében, a termékcsapatok olyan eszközökhöz nyúlhatnak, amelyek működtetése az üzemeltetés számára ismeretlen, és ez konfliktusforrás lehet a két érintett csoport között. Ha viszont a kiválasztási folyamatban szereplők dolgoznak üzemeltetésen és a termékcsapatban is, a szoftverkomponens cégen belüli bevezetése könnyebb lesz.

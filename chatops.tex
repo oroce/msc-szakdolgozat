@@ -41,7 +41,7 @@ A chatrendszerbe a robot úgy csatlakozik, ahogyan egy ember is tenné, minden �
 
 \section{Tulajdonságai}
 
-\brparagraph{Jobb kommunikáció}
+\subsection*{Jobb kommunikáció}
 \label{subsection:better_communication}
 Egy csapatban sok különböző szereplő lehet, amennyiben a csapat agilisan fejleszt, akkor feltehetően lesznek technikai és nem technikai emberek, akik annak ellenére, hogy egy 5-6 fős csapatban dolgoznak, differenciált információval és tudással rendelkeznek a terméket illetően. Egy nagyon egyszerű példa, ha a csapat egy olyan termékért felelős, amelyért lehet fizetni, viszont a fizetési szolgáltatás egy hibája, mérhető csökkenést fog okozni a csapat által fejlesztett szoftver mérőszámai alapján. Azonban egy másik szolgáltatás vagy szoftverkomponens állapota könnyen ellenőrizhető egy ChatOps alapú szervezetben, \aref{fig:get_outage_for_payment} példa ezt hivatott bemutatni.\\
 
@@ -56,7 +56,7 @@ Egy csapatban sok különböző szereplő lehet, amennyiben a csapat agilisan fe
 
 Egy másik gyakran előforduló problémát jelentenek az éjszakai leállások, amikor az ügyeletes akár reggelig a probléma javításán dolgozott és reggel még munkaidő kezdetére nem ért be, akkor könnyen látható, hogy meddig próbálta megjavítani a hibás részt illetve, hogy mit tett a javítás elvégzése érdekében.
 
-\brparagraph{Transzparens}
+\subsection*{Transzparens}
 
 Az előző pontban kifejtett okok is részben a transzparenciát segítik elő, de a chat rendszer használata már önállóan segíti az átláthatóságot.
 Egy szervezet általában sok formáját használja a kommunikációnak:
@@ -86,13 +86,13 @@ Bill: hey @Joey, @Paul I will join too because I'm going to implement it
       and there are a few things in the specification which won't work :(
   \end{alltt}
   \caption[DUMMY]%
-    {Egy elképzelt beszélgetés, mely jól személteti, hogy a beszélgetéshez, amely elvileg csak Paul és Joey között zajlott volna, még csatlakozott Bill is}%
+    {Egy elképzelt beszélgetés, mely jól személteti, hogy a beszélgetéshez, amely elvileg csak Paul és Joey között zajlott volna, még csatlakozott Bill is.}%
     \label{lst:search_feature_call}
 \end{figure}
 
 Természetesen a centralizálás nem azt jelenti, hogy minden beszélgetést a chaten kell megejteni, hiszen felesleges lenne ennyire központosítani mindent és előbb vagy utóbb feltehetően munkavállalói ellenállásnak köszönhetően csökkenne a chat használata. Továbbgondolva \aref{lst:search_feature_call} példát, a videóbeszélgetés ugyan nem elérhető chaten, viszont a beszélgetés arról, hogy a keresés működésének megbeszélése videóbeszélgetés formájában történt meg az igen, illetve ehhez hasonlóan elérhető a videóbeszélgetéshez tartozó link is elérhető (amihez használt szoftver valószínűleg támogatja a videóbeszélgetések rögzítését). A példa jól vizualizálja a chat alapú munkavégzés legnagyobb előnyeit: a kronológikus áttekinthetőséget, a korábbi beszélgetések kereshetőséget, bár ez igaz az emailekre is, viszont itt egy csapat minden tagja megtekintheti, nem csak azok, akik rajta voltak a címzett listán.\\
 
-\brparagraph{Egy interfész}
+\subsection*{Egy interfész}
 A legtöbb szervezet életében időről időre kerülnek bevezetésre új szoftverek, amelyek betanítási folyamatot igényelnek. Ráadásul, ha nehezen illeszkednek a szervezeti kultúrába, akkor gyakran a munkavállalók ellenségesen állhatnak a bevezetéssel szemben. Egy nagyon egyszerű példán lehetne ezt szemléltetni, ha be szeretne vezetni a szervezet egy munkaidő nyilvántartó szoftvert, akkor annak a kitöltéséhez feltehetően a következő lépéseket kellene végrehajtani:
 
 \begin{description}
@@ -151,11 +151,11 @@ A lista hosszának csak a képzelet, illetve az elérhető internetképes eszkö
 \newline
 Természetesen nem minden szoftver helyettesíthető mindössze egy pár szöveges utasítással, azonban érdemes belegondolni, hogy sok kis adminisztrációs rendszer sokkal felhasználóbarátabb és akár erőforrástakarékosabb lenne, ha csupán néhány parancs kiadásával lehetne irányítani ahelyett, hogy egy komplex felületen keresztül lehet őket elérni, amely ráadásul csak az asztali gépen meghatározott böngészőből érhető el.
 
-\brparagraph{Absztrakció}
+\subsection*{Absztrakció}
 Az absztrakció építése mindig költséges, de a szervezet jövőbeni lehetőségeit nagyban növeli, ha a fent említett munkaidőszervezési példánál maradva a szervezet a külső szoftver mellett dönt. Ha azonban egy év után arra a döntésre jut a szervezet, hogy a munkaidőnyilvántartás szükséges és a használt szoftvert lecseréli egy jobb piaci ajánlatnak köszönhetően, akkor számolnia kell a munkavállalókban keltett, újabb szoftver bevezetése okozta frusztrációval.\\
 Ha viszont a munkaidőnyilvántartás chaten keresztül kerül megoldásra, a háttérben lévő implementáció vagy szoftver könnyen cserélhető, hiszen a dolgozók előtt rejtve volt eddig is, ezért nem is fogják észrevenni, hogy mi történt a háttérben (a használatához szükséges parancsok módosítást nem igényelnek).
 
-\brparagraph{Aszinkron kommunikáció}
+\subsection*{Aszinkron kommunikáció}
 
 A kommunikációt két részre lehet tagolni a résztvevő felek időbeosztása alapján: szinkron és aszinkron. A szinkron kommunikáció során a résztvevő feleknek az időbeosztása meg kell, hogy egyezzen, azaz az egyik résztvevő fél kérdésére a másik résztvevő fél azonnal válaszol, tehát a válasz megérkezésének késésétől el lehet tekinteni, azaz nullának tekinthető. A kérdező résztvevő azonnali válaszadásra számít a válaszoló részéről, így működik a szóbeli beszélgetés.\\
 Ezzel ellentétben az aszinkron kommunikáció során a résztvevő felek nem számítanak azonnali reakcióra, ilyen kommunikációra példa az email, amely elküldése után a küldő tisztában van vele, hogy a válasz megérkezése és az elküldés között eltelt idő több mint nulla lesz.\\
@@ -203,7 +203,7 @@ Az előző felsorolás alapján könnyen látható, hogy a szinkron kommunikáci
   \item [Földrajzilag elosztott csapatok esetén] \hfill\\
   Földrajzilag elosztott csapatok vagy csak ideiglesen eltérő időzónában lévő csapatok esetében a szinkron kommunikáció gyakran nem lehetséges, hiszen többórás időeltolódás esetén a munkavégzést megnehezíti, ha egymásra kell várni.
   \item [Más feladat végzése közben] \hfill\\
-  A szinkron kommunikáció hatékonyságával vetekedni valóban nem lehet, viszont a szinkron kommunikáció azt jelenti, hogy a kommunikáció megkezdésekor végzett feladatot meg kell szakítani (legalább ideiglenesen), majd a kommunikáció végeztével lehet folytatni a korábban végzett feladatot, amely könnyen belátható, hogy sok megszakításnál a feladat el nem végzésébe torkollhat.
+  A szinkron kommunikáció hatékonyságával vetekedni valóban nem lehet, viszont a szinkron kommunikáció azt jelenti, hogy a kommunikáció megkezdésekor végzett feladatot meg kell szakítani (legalább ideiglenesen), majd a kommunikáció végeztével lehet folytatni a korábban végzett feladatot, amely könnyen belátható, hogy sok megszakításnál a feladat el nem végzésébe torkollhat. (\cite{demarco1999peopleware})
   \item [Információ hiányában] \hfill\\
   Amennyiben a kommunikációt kezdeményező félnek a kérdésére vagy adatigénylésére a válasz hosszabb ideig tart, ez lehet akár pár perc, óra, napok vagy hónapok, akkor az aszinkron kommunikációnak nincs alternatívája. 
 \end{description}
@@ -212,7 +212,7 @@ Minden feladat nem rendezhető csak szinkron vagy aszinkron csoportba, ezért é
 
 Ha a szervezeten belüli szinkron kommunikációt (telefonhívás, videóhívások) sikerül minimalizálni, akkor lehet növelni a szervezet tagjainak terhelhetőségét és minimalizálni az állandó kontextusváltás okozta frusztrációt, miközben minden kérdés és válasz dokumentálásra kerül a chatrendszernek köszönhetően.
 
-\brparagraph{Tanulva végzett munka - Learning by Doing}
+\subsection*{Tanulva végzett munka - Learning by Doing}
 A szervezet felépítésének, mindennapjainak komplexitását jól szemlélteti egy új tag belépése a szervezetbe, akinek meg kell mutatni a munkavégzést. Ezt követketően -az egyedüli használat során- rutin műveletté kell transzformálnia azt, ez mindenki számára nagy stresszor. Hasonlóan problémás lehet, mint a már korábban említett új szoftver bevezetése. Ott bemutatásra is került, hogy miért felhasználóbarátabb egy szöveges üzenetekkel elérhető szoftver.
 
 \begin{figure}[H]
@@ -225,7 +225,7 @@ A szervezet felépítésének, mindennapjainak komplexitását jól szemlélteti
 
 \Aref{fig:learn_by_doing} képen látható beszélgetés a GitHub szervezetében kívánja bemutatni, hogyan tanulnak az emberek, miközben végzik a munkájukat. Aki nem ért valamit, kérdezhet és miközben megkapja a választ, már az eredmény is láthatóvá válik. Ha később elfelejtené, akkor bármikor visszalapozhat az első napján született beszélgetések naplójához, amikor megmutatták neki a parancs működését. Továbbá a kereső bárki számára elérhető, és mindenkinek az üzenete elérhető, ezért megnézhető, hogy ki milyen parancsokat használ egy-egy feladat elvégzésére.
 
-\brparagraph{Incidens menedzsment új szintje}
+\subsection*{Incidens menedzsment új szintje}
 Az incidens menedzsment egy nehéz dolog, ugyanis gyakran éjszaka kell reagálni a felbukkanó hibákra a Runbook\nomenclature{Runbook}{\hfill\\A szoftverek működtetésének és azok működése során fellépő incidensek kezelésének lépéseit tartalmazó gyűjtemény.} által meghatározott módon. A ChatOps előnyeinek felsorolása közül nem véletlen kerül utoljára tárgyalásra ez a fontos terület, ugyanis ebben egyesül a chat alapú munkavégzés legtöbb pozitív tulajdonsága.\\
 Az incidensek megfelelő kezeléséhez szükségesek a következők:
 \begin{itemize}
@@ -238,8 +238,8 @@ Az incidensek megfelelő kezeléséhez szükségesek a következők:
   \item követni kell a Runbook utasításait
   \item ha nem sikerül elhárítani a hibát az ügyelet lejártáig, tájékoztatni kell a következő ügyeletest
 \end{itemize}
-\hfill\\
-\begin{figure}[H]
+
+\begin{figure}[ht]
   \begin{alltt}
 hubot (1:12): Failure detected in frontend, alert created with id 1337:
               http://yourduty.com/incident/frontend/1337, @Brian has 
@@ -267,7 +267,7 @@ Simon (3:00): Popping in, @Brian you can get some sleep
 Brian (3:00): Thanks @Simon, I tried my best, the error is still on
   \end{alltt}
   \caption[DUMMY]%
-  {Incidens kezelés ChatOps használatával}%
+  {Egy fiktív incidens kezelése ChatOps használatával}%
   \label{lst:oncall_message}
 \end{figure}
 

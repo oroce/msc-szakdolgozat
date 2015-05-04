@@ -12,9 +12,9 @@ Az automatizált fordítás, habár nem alapvető része a folyamatos integráci
 A folyamatos integrációra, kódminőség ellenőrzésre, tesztesetek futtatására, riportok értelmezésére már sok szoftver elérhető, többek között a Bamboo, amely a Jira és az Confluence mögött álló Atlassian terméke, vagy a Travic CI, amely ingyenes szolgáltatásként elérhető bármilyen nyílt forráskódú szoftver számára, illetve a mára de-facto rendszernek tekinthető Jenkins, amely a következő fejezetben kerül bemutatásra.
 
 \section{Jenkins\\\small{https://jenkins-ci.org/}}
-A Jenkins egy ingyenesen elérhető, nyílt forráskódú folytonos integráció támogató eszköz. A legtöbb verziókezelő rendszert támogatja, és több mint 300 kiegészítő érhető el hozzá, melyek segítségével könnyedén testreszabható. A legnagyobb előnye, és amiért az iparági sztenderddé válhatott, az az, hogy rendkívül moduláris, könnyen konfigurálható és képes kiszolgálni egy egyéni projekt és egy nagyobb cég igényeit is.\hfill\\
-A legtöbb platformra (Windows, Linux disztribúciók, OSX, BSD) elérhető szoftver, amellett hogy nyílt forráskódú kereskedelmi támogatással is rendelkezik.\hfill\\
-Azon túl, hogy a folyamatos integráció lépések sorozatába rendezhető, melyet a webes felületen keresztül, konfigurációs fájl vagy akár szakterület-specifikus nyelv (DSL) használatával is testre szabható a létrehozott feladatok (job) egymásba is integrálhatóak, a függőségi viszony (upstream, downstream) meghatározásával.\hfill\\
+A Jenkins egy ingyenesen elérhető, nyílt forráskódú folytonos integráció támogató eszköz. A legtöbb verziókezelő rendszert támogatja, és több mint 300 kiegészítő érhető el hozzá, melyek segítségével könnyedén testreszabható. Az ipari sztenderddé válását annak köszönheti (amely egyébként a legynagyobb előnye is), hogy rendkívül moduláris, könnyen konfigurálható és képes kiszolgálni egy egyéni projekt és egy nagyobb cég igényeit is.\hfill\\
+A legtöbb platformra (Windows, Linux disztribúciók, OSX, BSD) elérhető szoftver, amellett hogy nyílt forráskódú, kereskedelmi támogatással is rendelkezik.\hfill\\
+Azon túl, hogy a folyamatos integráció lépések sorozatába rendezhető, melyet a webes felületen keresztül, konfigurációs fájl vagy akár szakterület-specifikus nyelv (DSL) használatával is testre szabható, a létrehozott feladatok (job) egymásba is integrálhatóak, a függőségi viszony (upstream, downstream) meghatározásával.\hfill\\
 A kiegészítők segítségével testreszabható a bemeneteli forrás (verziókezelők, lokális mappa), az indítási jelzés (start gomb megnyomása, a tárolóba való feltöltés, a programozható interfészen keresztüli hívás, a szülőfeladat állapotváltozása), a kódminőségellenőrzés (checkstyle, linting), a kód építése (ant, grails, gradle), a tesztek lefuttatása (xUnit, TAP) és eredményük analizálása, majd továbbításuk további rendszerekbe (tesztekkel lefedett kód százalékos változása a kód átnézést kezelő rendszerbe, az eltört tesztekről email értesítés) és egyéb szervezet specifikus értesítés kiküldése (release manager értesítése, a különbséget beküldő értesítése).
 Amint látható, a Jenkins képes alkalmazkodni a szervezetek által felállított igényekhez, technológiákhoz, ennek is köszönhető töretlen népszerűsége mind a vállalati, mind az open source világban.
 
@@ -26,7 +26,7 @@ A TDD használatához egy elég erős szemléletváltásra van szükség, ezért
 Egy alkalmazás jó és jól működéséhez könnyen bővíthetőnek kell lennie, így tud a termék, szolgáltatás megújulni, a továbbfejlesztés zökkenőmentesen zajlani. De hogyan történik az új funkciók tervezése, beépíthetőségi megvalósításának tervezése?
 \\
 A TDD ezt próbálja elősegíteni azáltal, hogy a teszteseteket még a tervezés fázisában kell megírni, így a problémák a munka korai fázisában kiderülhetnek. A TDD keretrendszerek általában könnyen olvashatóak még a fejlesztésben kevésbé járatos projektrésztvevők számára is, \aref{fig:mocha_should_tdd_test} ábra ezt kívánja bemutatni.
-\ref{fig:mocha_should_tdd_test}
+
 \begin{figure}[H]
 	\centering
 		\lstinputlisting[language=Javascript]{assets/mocha_test.js}
@@ -67,7 +67,7 @@ Ha sikeresen le lehet futtatni a teszteket, akkor következik a kód tisztítás
 \item Könnyebb egy tesztelhető kódot refaktorálni (a tervezés miatt).
 \item Az is segítség lehet, hogy hol nincs hiba.
 \item Segít tesztelhetővé tenni az alkalmazást.
-\item Rákényszerít, hogy ne legyen az alkalmazásban spagetti kód\nomenclature{spagetti kód}{\hfill\\A kifejezést olyan programkódra használják pejoratív értelemben, amelyek komplex vagy kevésbé komplex feladatot struktúrálatlanul, átláthatatlanul oldalanak meg.}.
+\item Rákényszerít, hogy ne legyen az alkalmazásban spagetti kód\nomenclature{spagetti kód}{\hfill\\A kifejezést olyan programkódra használják pejoratív értelemben, amelyek komplex vagy kevésbé komplex feladatot struktúrálatlanul, átláthatatlanul oldalanak meg. A spagetti kód létrejöttének okai között szerepel a használt technológia megfelelő ismeretének hiánya, a programozó felkészületlensége vagy a folyamatosan változó specifikáció okozta folyamatos funkciófejlesztés, anélkül, hogy a programkód refaktorálásra kerülne.}.
 \item Felesleges funkció nem kerül megvalósításra, csak az, ami a teszthez szükséges.
 \item Előre kell tervezni.
 \item Gyors, folyamatos visszajelzés kapható a funkció állapotáról (nem csak az adott fejlesztőknek, de a csapat többi tagjának és a projektmenedzsernek is).

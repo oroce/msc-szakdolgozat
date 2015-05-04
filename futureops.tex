@@ -85,7 +85,7 @@ Természetesen ez nem azt jelenti, hogy a szervezeten belül bárki bármihez ho
 
 \Aref{sect:futureops_overview} fejezetben áttekintésre került, hogy a szervezet által használt eszközök integrációja hogyan javíthatja a munkavégzés minőségét. A következőkben pedig megvizsgálásra kerül, hogy mire kell figyelni, egy szoftverműködés során, milyen lépések azok, amelyeket végre kell hajtani, hogy a szolgáltatás felhasználói számára a működtetés szinte láthatatlan legyen.
 
-\brparagraph{Fejlesztési környezet}
+\subsection*{Fejlesztési környezet}
 A fejlesztés során \aref{chap:cont_int}. és \aref{chap:cont_not}. fejezetben bemutatott lépések a legfontosabbak, azaz az adott fejlesztőcsapat, a projektmenedzser, az egyéb belső érintettek folyamatos tájékoztatása és a visszacsatolás idejének csökkentése, többek között a következő folyamatok esetén.
 \begin{description}
   \item[a kódátnézés (code review)]\hfill\\
@@ -98,7 +98,7 @@ A fejlesztés során \aref{chap:cont_int}. és \aref{chap:cont_not}. fejezetben 
   Az alkalmazáshoz kapcsoló feladatok közül, nem csak a produkciós környezetben kell az automatizálást komolyan venni, és aktívan használni, hanem már a fejlesztés során is. Automatizálás magába foglalhatja a konfiguráció menedzsmentet (amelyet szintén tesztelni kell, tehát igaz rá a fejlesztési környezet minden pontja), a tesztelést (egység, több környezetben is használható integrációs tesztek), performancia problémák detektálását.
 \end{description}
 
-\brparagraph{Élesítés}
+\subsection*{Élesítés}
 Az élesítés az a folyamat, amely során a kód a fejlesztési környezetből a produkciós környezetbe kerül. A dolgozat nem különíti el a kódélesítést (deploy) és a funkcióélesítést (release), mert bár a legtöbb szoftver élesítésre ezek elkülönítésre kerülnek, azonban a felmerülő pontok, amelyekre figyelmet kell fordítani mindkét esetben ugyanúgy jelen vannak. Az élesítés során a legfontosabb lépések, amelyeket figyelembe kell venni a következők:
 \begin{description}
   \item[Konfiguráció menedzsment]
@@ -109,7 +109,7 @@ Az élesítés az a folyamat, amely során a kód a fejlesztési környezetből 
   A változáskövetést általában egy változás naplóban (changelog) végzik, amely egy projekt megemlítendő változásait tartalmazza válogatott és kronológiailag rendezett formában (\cite{keep_a_changelog}).
 \end{description}
 
-\brparagraph{Hibadetektálás}
+\subsection*{Hibadetektálás}
 A hibák detektálása az élesítés közben és után folyamatos feladatként jelentkezik, a hibák a beérkező adatfolyamokból kerülnek kalkulálásra, ezeknek két típusa van:
 \begin{itemize}
   \item külső adatok
@@ -125,12 +125,12 @@ A külső adatok független ellenőrzésekből, részben vagy teljesen harmadik 
   \item Akcióra kész hibák használata. Annak ellenére, hogy külső adatfolyamból érkező hibák érthetőek, ez nem azt jelenti, hogy az azokat követő hibajavítás is egyértelmű lenne vagy esetleg meghatározható lenne. Ezért a több forrásból érkező adatfolyamokat (külső ellenőrzés, alkalmazás naplóbejegyzései, konténer naplóbejegyzései, hiba előidézésében részt vevő egyéb komponensek naplóüzenetei, metrikái) összegyűjtésével megérthető a hibák a kontextusa, a későbbi ismételt előidézhetőség esélye megnő, szükség esetén (regressziós) tesztesettel lefedhetővé válik.
 \end{itemize}
 
-\brparagraph{Hibaelhárítás}
+\subsection*{Hibaelhárítás}
 A hibaelhárítása a hiba detektálása után kezdődik el, melynek első lépése az incidens kezelő rendszerből érkező értesítés kezelése. Ezt követően a beérkező hibához kapcsolódó naplóüzenetek és elérhető grafikonok (hasonlóan, mint \aref{lst:oncall_message} példában látható) megtekintése, a hiba okának detektálása, majd az előzetes szabálygyűjtemény (runbook) alapján történő végrehajtás megkezdése.
 Emellett publikus szolgáltatás vagy végfelhasználót is érintő probléma esetén erősen ajánlott a szolgáltatás státuszoldalát is frissíteni, hogy reflektálja a fennálló hiba létét, az érintett komponseket és a várható javítás idejét, amennyiben lehetséges ennek megbecslése. A hiba javítása akár újabb emberek, csoportok bevonását is igényelheti. Gyakran előfordul, hogy a incidens megoldása magának az alkalmazásnak a módosítását is igényli, amely ilyenkor ismét végigmegy az a fejlesztési környezet és az élesítés lépésein.\hfill\\
 A hibajavítás befejeztével az incidens lezárásra kerül, a szolgáltatásért felelősök és  amennyiben szükséges az érintett felhasználók is értesítésre kerülnek.
 
-\brparagraph{Hiba-utóélet}
+\subsection*{Hiba-utóélet}
 Minden hiba után általában két-három nappal később érdemes egy úgynevezett post mortem analízist tartani. A nem közvetlenül az incidens lezárása után tartott analízis azért fontos, mert ilyenkor már a hibát övező érzelmek csökkennek (egy éjszaka három órakor érkező riasztás sok negatív érzelemmel fogja eltölteni az ügyeletest), viszont még nem került elfelejtésre a hiba oka és a javítás folyamata. A post mortem analízis egy írásos dokumentummal záródó megbeszélés, amely tartalmazza a hiba körülményeit, a megoldáshoz szükséges akciókat és a későbbi megelőzéshez szükséges lépéseket.\hfill\\
 A modern szervezetekben gyakran alkalmazott metodológia a hibáztatásmentes post mortem (blamess post mortem), amely a hibák okozta szolgáltatáskieséseket a szervezet tanulási folyamataként látják, nem pedig a hibás személy kilétét próbálják meg felfedni és megbüntetni (\cite{blameless_post_mortem}).
 A felelős személy meghatározása egy elosztott rendszerben szinte lehetetlen, ezért érdemes inkább a post mortem analízist egy tanulási lehetőségként értelmezni, mint a büntetés egy formájának tekinteni. Továbbá nagy skálázású alkalmazásoknál incidensek gyakran előfordulnak, ezért az üzemeltetőket érdemes támogatni abban, hogy nyíltan beszéljenek a post mortem alkalmával az általuk elvégzütt lépésekről, ezáltal csökkentve az incidensek okozta stresszt.
